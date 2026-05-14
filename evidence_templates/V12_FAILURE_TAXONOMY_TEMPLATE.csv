@@ -1,0 +1,2 @@
+image_key,input_image,gt_mask,pred_mask,overlay_image,model,primary_failure_type,secondary_failure_type,boundary_error_type,manual_confirmed,short_evidence_note,report_use
+TBD,TBD,TBD,TBD,TBD,LiteRaceSegNet,manual_required,,manual_required,no,,candidate

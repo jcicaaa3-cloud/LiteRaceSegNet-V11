@@ -1,0 +1,31 @@
+# Compatibility config for the uploaded old sp.model/sp.vocab tokenizer.
+# This reproduces the old 6-layer/384-dim idea with SentencePiece vocab=660.
+seed: 42
+device: auto
+data_path: data/data.txt
+out_dir: runs/legacy_sp660
+tokenizer: sentencepiece
+sp_model_path: tokenizer/sp.model
+expected_vocab_size: 660
+block_size: 128
+n_layer: 6
+n_head: 6
+n_embd: 384
+dropout: 0.20
+bias: true
+tie_weights: true
+batch_size: 16
+gradient_accumulation_steps: 4
+learning_rate: 0.0003
+weight_decay: 0.01
+grad_clip: 1.0
+max_iters: 5000
+eval_interval: 250
+save_interval: 1000
+eval_iters: 20
+train_ratio: 0.90
+dtype: bfloat16
+sample_prompt: "오늘은"
+sample_tokens: 120
+temperature: 0.7
+top_k: 20

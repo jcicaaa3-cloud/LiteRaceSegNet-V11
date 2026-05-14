@@ -1,0 +1,30 @@
+# Main V8 config. This upgrades the old 6-layer/384-dim HoshiLM into a cleaner trainable pipeline.
+# Expected scale with vocab≈8k: ~13.8M params. Existing legacy sp.model had vocab=660, so actual legacy scale was ~11.2M.
+seed: 42
+device: auto
+data_path: data/data.txt
+out_dir: runs/hoshilm_m
+tokenizer: char
+expected_vocab_size: 8000
+block_size: 256
+n_layer: 6
+n_head: 6
+n_embd: 384
+dropout: 0.10
+bias: true
+tie_weights: true
+batch_size: 16
+gradient_accumulation_steps: 4
+learning_rate: 0.00025
+weight_decay: 0.10
+grad_clip: 1.0
+max_iters: 8000
+eval_interval: 250
+save_interval: 1000
+eval_iters: 30
+train_ratio: 0.90
+dtype: bfloat16
+sample_prompt: "LiteRaceSegNet 프로젝트는"
+sample_tokens: 160
+temperature: 0.8
+top_k: 50

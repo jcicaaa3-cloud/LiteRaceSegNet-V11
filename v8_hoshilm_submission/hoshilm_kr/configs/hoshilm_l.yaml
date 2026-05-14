@@ -1,0 +1,30 @@
+# GPU config for AWS g6/L4-style runs. Use only after expanding the corpus.
+# Expected scale with vocab≈8k: ~29.6M params.
+seed: 42
+device: auto
+data_path: data/data.txt
+out_dir: runs/hoshilm_l
+tokenizer: char
+expected_vocab_size: 8000
+block_size: 384
+n_layer: 8
+n_head: 8
+n_embd: 512
+dropout: 0.12
+bias: true
+tie_weights: true
+batch_size: 8
+gradient_accumulation_steps: 8
+learning_rate: 0.0002
+weight_decay: 0.10
+grad_clip: 1.0
+max_iters: 15000
+eval_interval: 500
+save_interval: 1500
+eval_iters: 30
+train_ratio: 0.90
+dtype: bfloat16
+sample_prompt: "프로젝트의 핵심은"
+sample_tokens: 200
+temperature: 0.8
+top_k: 50

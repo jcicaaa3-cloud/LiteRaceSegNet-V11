@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Data / checkpoints / generated evidence
+/datasets/**/images/*
+/datasets/**/masks/*
+!/datasets/**/.gitkeep
+!/datasets/**/README*.md
+/seg/runs/**
+!/seg/runs/v11_ablation/*.csv
+/final_evidence/**
+!/final_evidence/.gitkeep
+*.pth
+*.pt
+*.ckpt
+*.onnx
+*.safetensors
+*.bin
+
+# Manuscripts removed from the GitHub release
+/paper/
+*.docx
+*.pdf
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

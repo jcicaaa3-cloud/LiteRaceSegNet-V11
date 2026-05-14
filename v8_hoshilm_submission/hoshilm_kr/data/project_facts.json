@@ -1,0 +1,112 @@
+{
+  "project": "LiteRaceSegNet v9 + HoshiLM Project QA",
+  "purpose": "Evidence-grounded QA over LiteRaceSegNet result files and HoshiLM training corpus.",
+  "dataset_counts": {
+    "original_train_images": 120,
+    "original_train_masks": 120,
+    "original_val_images": 10,
+    "original_val_masks": 10,
+    "aug_train_images": 2400,
+    "aug_train_masks": 2400,
+    "aug_val_images": 10,
+    "aug_val_masks": 10,
+    "newval_in_train": 0,
+    "newval_in_val": 10,
+    "oldval_in_train": 10,
+    "pair_check": "OK"
+  },
+  "train_metrics": {
+    "train_log_path": "/mnt/data/lrs_v9_ante_work/road-damage-segmentation-portfolio/v8_hoshilm_submission/lrs_v6_evidence_summary/literace_v6_A_newval_balanced_s42/train_log.csv",
+    "epochs_recorded": 27,
+    "last_epoch": {
+      "epoch": 27.0,
+      "lr": 0.00032958316858379226,
+      "train_loss": 1.2180814524491628,
+      "val_loss": 0.8302182157834371,
+      "pixel_acc": 0.9006281534830729,
+      "miou_binary": 0.769923918224904,
+      "iou_damage": 0.6634250629657832,
+      "iou_background": 0.8764227734840248,
+      "best": 0.0
+    },
+    "best_miou_binary": {
+      "epoch": 3.0,
+      "lr": 0.0004368614437687602,
+      "train_loss": 1.3924917131662369,
+      "val_loss": 0.8568061788876852,
+      "pixel_acc": 0.9157063802083333,
+      "miou_binary": 0.7987983434497284,
+      "iou_damage": 0.7028867287923498,
+      "iou_background": 0.8947099581071071,
+      "best": 1.0
+    },
+    "best_iou_damage": {
+      "epoch": 3.0,
+      "lr": 0.0004368614437687602,
+      "train_loss": 1.3924917131662369,
+      "val_loss": 0.8568061788876852,
+      "pixel_acc": 0.9157063802083333,
+      "miou_binary": 0.7987983434497284,
+      "iou_damage": 0.7028867287923498,
+      "iou_background": 0.8947099581071071,
+      "best": 1.0
+    },
+    "best_pixel_acc": {
+      "epoch": 3.0,
+      "lr": 0.0004368614437687602,
+      "train_loss": 1.3924917131662369,
+      "val_loss": 0.8568061788876852,
+      "pixel_acc": 0.9157063802083333,
+      "miou_binary": 0.7987983434497284,
+      "iou_damage": 0.7028867287923498,
+      "iou_background": 0.8947099581071071,
+      "best": 1.0
+    },
+    "final_best_update": {
+      "epoch": 3.0,
+      "lr": 0.0004368614437687602,
+      "train_loss": 1.3924917131662369,
+      "val_loss": 0.8568061788876852,
+      "pixel_acc": 0.9157063802083333,
+      "miou_binary": 0.7987983434497284,
+      "iou_damage": 0.7028867287923498,
+      "iou_background": 0.8947099581071071,
+      "best": 1.0
+    },
+    "columns": [
+      "epoch",
+      "lr",
+      "train_loss",
+      "val_loss",
+      "pixel_acc",
+      "miou_binary",
+      "iou_damage",
+      "iou_background",
+      "best"
+    ]
+  },
+  "primary_config": {
+    "path": "/mnt/data/lrs_v9_ante_work/road-damage-segmentation-portfolio/v8_hoshilm_submission/lrs_v6_evidence_summary/pothole_binary_literace_v6_A_newval_balanced.yaml",
+    "save_dir": "seg/runs/literace_v6_A_newval_balanced_s42",
+    "model_name": "lite_race",
+    "base_channels": "24",
+    "context_channels": "96",
+    "use_detail_branch": "true",
+    "context_module": "lite_aspp",
+    "use_boundary_gate": "true",
+    "fuse_boundary_logit": "true",
+    "image_size": "384, 512",
+    "batch_size": "4",
+    "epochs": "90",
+    "base_lr": "0.00045",
+    "boundary_width": "3",
+    "class_weights": "0.28, 0.72",
+    "dice_weight": "0.85",
+    "boundary_weight": "0.10"
+  },
+  "limits": [
+    "HoshiLM is a toy/small decoder-only Transformer experiment, not a production LLM.",
+    "Project QA should cite evidence files and avoid claiming metrics not present in the archive.",
+    "HTML UI does not contain fixed answer tables; it calls the local Python API."
+  ]
+}

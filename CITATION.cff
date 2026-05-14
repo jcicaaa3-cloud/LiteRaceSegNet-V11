@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+title: LiteRaceSegNet
+authors:
+  - family-names: Kim
+    given-names: Wonseok
+message: "If you use this repository, cite the GitHub project and include the version or commit hash."
+repository-code: "https://github.com/jcicaaa3-cloud/LiteRaceSegNet-V11"
+abstract: "A lightweight boundary-aware road-damage segmentation project with a custom dual-branch CNN and CPU/GPU evidence pipeline."
+keywords:
+  - semantic segmentation
+  - road damage segmentation
+  - pothole detection
+  - lightweight CNN
+  - boundary-aware segmentation
+license: "LicenseRef-Portfolio-Academic-Demo"

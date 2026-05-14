@@ -1,0 +1,73 @@
+seed: 42
+device: cuda
+num_workers: 0
+save_dir: seg/runs/literace_upgrade_conservative
+
+data:
+ root: datasets/pothole_binary/processed
+ class_names:
+  - background
+  - pothole
+ ignore_index: 255
+ mask_positive_threshold: 0
+ mask_ignore_values: []
+ allow_fuzzy_filename_match: true
+ fuzzy_match_threshold: 0.82
+
+model:
+ name: lite_race
+ num_classes: 2
+ use_aux: true
+ base_channels: 24
+ context_channels: 96
+ use_detail_branch: true
+ context_module: lite_aspp
+ liteaspp_rates: [1, 2, 4]
+ use_boundary_gate: true
+ fuse_boundary_logit: true
+
+train:
+ image_size: [256, 384]
+ batch_size: 4
+ epochs: 40
+ amp: true
+ base_lr: 0.00035
+ weight_decay: 0.0002
+ grad_clip: 1.0
+ print_freq: 1
+ early_stopping_patience: 10
+ boundary_width: 3
+ # 기존 [0.35, 0.65]보다 damage 과가중을 줄여 배경 오검출을 낮추는 보수형 설정.
+ class_weights: [0.55, 0.45]
+ augmentation:
+  horizontal_flip_p: 0.5
+  brightness_delta: 0.05
+  contrast_range: 0.08
+  gaussian_noise_std: 0.015
+ loss:
+  ce_weight: 1.0
+  dice_weight: 0.35
+  aux_weight: 0.2
+  boundary_weight: 0.10
+
+val:
+ batch_size: 2
+ # binary argmax 대신 damage probability threshold로 검증 가능.
+ # 과검출이 큰 데이터에서는 0.55~0.70 sweep 권장.
+ threshold: 0.60
+
+optimizer:
+ name: adamw
+
+scheduler:
+ name: poly
+ power: 0.9
+ min_lr: 0.000001
+
+infer:
+ overlay_alpha: 0.45
+ threshold: 0.60
+ min_area_pixels: 120
+ palette:
+  - [30, 30, 30]
+  - [255, 90, 0]

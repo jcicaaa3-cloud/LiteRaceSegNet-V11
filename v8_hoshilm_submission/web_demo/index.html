@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LiteRaceSegNet v9 — Vision + HoshiLM Lab</title>
+<style>
+:root{--bg:#050505;--card:#111;--muted:#9aa0a6;--line:#2a2a2a;--accent:#67d7ff;--accent2:#9c7cff;--text:#f5f5f7}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 20% 0%,#162033 0,#050505 42%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;line-height:1.5}
+.hero{min-height:70vh;display:grid;place-items:center;text-align:center;padding:80px 24px}.eyebrow{color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase}.hero h1{font-size:clamp(48px,8vw,112px);line-height:.96;margin:16px 0 12px}.hero p{max-width:900px;margin:0 auto;color:#c9c9d1;font-size:clamp(18px,2vw,28px)}
+.wrap{max-width:1180px;margin:0 auto;padding:32px 24px 80px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.card{background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.03));border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.28)}.span4{grid-column:span 4}.span6{grid-column:span 6}.span8{grid-column:span 8}.span12{grid-column:span 12}@media(max-width:900px){.span4,.span6,.span8{grid-column:span 12}}
+.big{font-size:clamp(42px,6vw,78px);font-weight:800;letter-spacing:-.06em}.sub{color:var(--muted);font-size:15px}.tag{display:inline-block;padding:7px 12px;border:1px solid #333;border-radius:999px;color:#d7eaff;background:#0c1721;margin:3px;font-size:13px}.img{width:100%;border-radius:20px;border:1px solid #333}.section-title{font-size:44px;margin:64px 0 20px;letter-spacing:-.04em}.chat{display:flex;flex-direction:column;gap:12px}.bubble{max-width:85%;padding:14px 16px;border-radius:18px;border:1px solid #333}.user{align-self:flex-end;background:#14283a}.bot{align-self:flex-start;background:#151515}.btns button{margin:6px 6px 0 0;padding:10px 14px;border-radius:999px;border:1px solid #333;background:#101010;color:#eee;cursor:pointer}.btns button:hover{border-color:var(--accent);color:white}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;color:#d8e8ff;white-space:pre-wrap}.notice{color:#b8b8c0;font-size:14px;border-left:3px solid var(--accent);padding-left:14px}
+</style>
+</head>
+<body>
+<section class="hero"><div><div class="eyebrow">LiteRaceSegNet v8</div><h1>Vision model.<br/>HoshiLM lab.</h1><p>도로 손상 세그멘테이션 결과 패키지에 toy-scale decoder-only Transformer 실험을 결합한 v8 확장 데모.</p></div></section>
+<main class="wrap">
+<section class="grid">
+<div class="card span4"><div class="big">0.125M</div><div class="sub">LiteRaceSegNet estimated trainable parameters</div></div>
+<div class="card span4"><div class="big">0.799</div><div class="sub">Best validation binary mIoU from saved evidence</div></div>
+<div class="card span4"><div class="big">13.8M</div><div class="sub">HoshiLM-M expected scale with vocab≈8k</div></div>
+<div class="card span6"><h2>Segmentation evidence</h2><img class="img" src="assets/newval_001_service_card.png" alt="service card"></div>
+<div class="card span6"><h2>Training metrics</h2><img class="img" src="assets/lrs_val_metrics.png" alt="metrics"></div>
+</section>
+<h2 class="section-title">Architecture</h2>
+<section class="grid">
+<div class="card span6"><h3>LiteRaceSegNet</h3><p class="mono">Input road image → MobileNetV3-style lightweight backbone → Context branch + Boundary-aware branch → Fusion → Damage mask</p><p class="sub">작은 손상 영역과 불규칙한 경계를 겨냥한 경량 segmentation pipeline.</p></div>
+<div class="card span6"><h3>HoshiLM-KR</h3><p class="mono">Tokens → Token/Position Embedding → Decoder Block × N → LayerNorm → LM Head → Next-token prediction</p><p class="sub">대형 상용 언어모델급 모델이 아니라, decoder-only Transformer 학습 구조를 재현하기 위한 소형 연구/교육용 구현.</p></div>
+</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,33 @@
+# HoshiLM Project QA - XXL experimental config.
+# Actual parameter scale with bundled SentencePiece vocab≈660: ~203.00M params.
+# Warning: slower and easier to overfit with the current small project corpus.
+# Keep this as an optional "체급 시연" config, not the safest final reporting baseline.
+seed: 42
+device: auto
+dtype: bfloat16
+tokenizer: sentencepiece
+sp_model_path: tokenizer/sp.model
+vocab_size_override: 660
+data_path: data/data_project_qa.txt
+out_dir: runs/hoshilm_project_qa_xxl_200m
+train_ratio: 0.92
+block_size: 768
+n_layer: 16
+n_head: 16
+n_embd: 1024
+dropout: 0.12
+bias: true
+tie_weights: true
+batch_size: 1
+gradient_accumulation_steps: 48
+learning_rate: 0.00012
+weight_decay: 0.10
+grad_clip: 1.0
+max_iters: 6000
+eval_interval: 200
+eval_iters: 12
+save_interval: 500
+sample_prompt: "질문: LiteRaceSegNet과 HoshiLM의 관계는?\n답변:"
+sample_tokens: 260
+temperature: 0.72
+top_k: 50

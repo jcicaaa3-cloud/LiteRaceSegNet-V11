@@ -1,0 +1,4 @@
+model,variant,source,checkpoint_or_run,best_miou_binary,iou_damage,params_million,latency_ms_per_image,device,input_size,notes
+LiteRaceSegNet,v11_full_reference,own_run,seg/runs/v11_ablation/v11_full_reference,,,,,,256x384,Fill after V11 ablation run
+SegFormer,B3/E3 baseline,own_or_restored_run,seg/runs/segformer_03,,,,,,256x384,Fill only after comparable training/evaluation
+DeepLabV3+,baseline,external_or_own_run,,,,,,,256x384,Do not claim unless same dataset/protocol is available

@@ -1,0 +1,28 @@
+# AWS smoke-test config: verifies the HoshiLM pipeline without a long training run.
+seed: 42
+device: auto
+data_path: data/data.txt
+out_dir: runs/hoshilm_smoke_aws
+tokenizer: char
+block_size: 64
+n_layer: 2
+n_head: 2
+n_embd: 128
+dropout: 0.10
+bias: true
+tie_weights: true
+batch_size: 16
+gradient_accumulation_steps: 1
+learning_rate: 0.0005
+weight_decay: 0.10
+grad_clip: 1.0
+max_iters: 60
+eval_interval: 20
+save_interval: 20
+eval_iters: 5
+train_ratio: 0.90
+dtype: bfloat16
+sample_prompt: "LiteRaceSegNet 프로젝트는"
+sample_tokens: 80
+temperature: 0.8
+top_k: 40

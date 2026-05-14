@@ -1,0 +1,5 @@
+model,device,device_name,input_h,input_w,batch_size,amp,latency_mean_ms,latency_std_ms,latency_min_ms,latency_max_ms,throughput_fps,cuda_peak_memory_mb,cuda_allocated_memory_mb,params_million,fp32_mib,source_file,note
+LiteRaceSegNet,cpu,TBD,TBD,TBD,1,N/A,TBD,TBD,TBD,TBD,TBD,N/A,N/A,0.124509,0.474964,final_evidence/02_metrics_and_compare_cpu/model_compare_summary.csv,CPU condition only
+SegFormer baseline,cpu,TBD,TBD,TBD,1,N/A,TBD,TBD,TBD,TBD,TBD,N/A,N/A,TBD,TBD,final_evidence/02_metrics_and_compare_cpu/model_compare_summary.csv,CPU condition only
+LiteRaceSegNet,cuda,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,0.124509,0.474964,final_evidence/02_metrics_and_compare_gpu/model_compare_summary.csv,GPU condition only
+SegFormer baseline,cuda,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,final_evidence/02_metrics_and_compare_gpu/model_compare_summary.csv,GPU condition only

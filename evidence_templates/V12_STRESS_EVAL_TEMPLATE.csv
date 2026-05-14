@@ -1,0 +1,6 @@
+model,stress_type,intensity,metric_clean,metric_stress,drop_rate_percent,damage_iou_clean,damage_iou_stress,boundary_f1_clean,boundary_f1_stress,boundary_drop_rate_percent,source_file,note
+LiteRaceSegNet,gaussian_noise,low,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD
+LiteRaceSegNet,blur,medium,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD
+LiteRaceSegNet,brightness_contrast,medium,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD
+LiteRaceSegNet,jpeg_compression,medium,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD
+SegFormer baseline,gaussian_noise,low,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD

@@ -1,0 +1,2223 @@
+# LiteRaceSegNet Project Facts
+{
+  "project": "LiteRaceSegNet v9 + HoshiLM Project QA",
+  "purpose": "Evidence-grounded QA over LiteRaceSegNet result files and HoshiLM training corpus.",
+  "dataset_counts": {
+    "original_train_images": 120,
+    "original_train_masks": 120,
+    "original_val_images": 10,
+    "original_val_masks": 10,
+    "aug_train_images": 2400,
+    "aug_train_masks": 2400,
+    "aug_val_images": 10,
+    "aug_val_masks": 10,
+    "newval_in_train": 0,
+    "newval_in_val": 10,
+    "oldval_in_train": 10,
+    "pair_check": "OK"
+  },
+  "train_metrics": {
+    "train_log_path": "/mnt/data/lrs_v9_ante_work/road-damage-segmentation-portfolio/v8_hoshilm_submission/lrs_v6_evidence_summary/literace_v6_A_newval_balanced_s42/train_log.csv",
+    "epochs_recorded": 27,
+    "last_epoch": {
+      "epoch": 27.0,
+      "lr": 0.00032958316858379226,
+      "train_loss": 1.2180814524491628,
+      "val_loss": 0.8302182157834371,
+      "pixel_acc": 0.9006281534830729,
+      "miou_binary": 0.769923918224904,
+      "iou_damage": 0.6634250629657832,
+      "iou_background": 0.8764227734840248,
+      "best": 0.0
+    },
+    "best_miou_binary": {
+      "epoch": 3.0,
+      "lr": 0.0004368614437687602,
+      "train_loss": 1.3924917131662369,
+      "val_loss": 0.8568061788876852,
+      "pixel_acc": 0.9157063802083333,
+      "miou_binary": 0.7987983434497284,
+      "iou_damage": 0.7028867287923498,
+      "iou_background": 0.8947099581071071,
+      "best": 1.0
+    },
+    "best_iou_damage": {
+      "epoch": 3.0,
+      "lr": 0.0004368614437687602,
+      "train_loss": 1.3924917131662369,
+      "val_loss": 0.8568061788876852,
+      "pixel_acc": 0.9157063802083333,
+      "miou_binary": 0.7987983434497284,
+      "iou_damage": 0.7028867287923498,
+      "iou_background": 0.8947099581071071,
+      "best": 1.0
+    },
+    "best_pixel_acc": {
+      "epoch": 3.0,
+      "lr": 0.0004368614437687602,
+      "train_loss": 1.3924917131662369,
+      "val_loss": 0.8568061788876852,
+      "pixel_acc": 0.9157063802083333,
+      "miou_binary": 0.7987983434497284,
+      "iou_damage": 0.7028867287923498,
+      "iou_background": 0.8947099581071071,
+      "best": 1.0
+    },
+    "final_best_update": {
+      "epoch": 3.0,
+      "lr": 0.0004368614437687602,
+      "train_loss": 1.3924917131662369,
+      "val_loss": 0.8568061788876852,
+      "pixel_acc": 0.9157063802083333,
+      "miou_binary": 0.7987983434497284,
+      "iou_damage": 0.7028867287923498,
+      "iou_background": 0.8947099581071071,
+      "best": 1.0
+    },
+    "columns": [
+      "epoch",
+      "lr",
+      "train_loss",
+      "val_loss",
+      "pixel_acc",
+      "miou_binary",
+      "iou_damage",
+      "iou_background",
+      "best"
+    ]
+  },
+  "primary_config": {
+    "path": "/mnt/data/lrs_v9_ante_work/road-damage-segmentation-portfolio/v8_hoshilm_submission/lrs_v6_evidence_summary/pothole_binary_literace_v6_A_newval_balanced.yaml",
+    "save_dir": "seg/runs/literace_v6_A_newval_balanced_s42",
+    "model_name": "lite_race",
+    "base_channels": "24",
+    "context_channels": "96",
+    "use_detail_branch": "true",
+    "context_module": "lite_aspp",
+    "use_boundary_gate": "true",
+    "fuse_boundary_logit": "true",
+    "image_size": "384, 512",
+    "batch_size": "4",
+    "epochs": "90",
+    "base_lr": "0.00045",
+    "boundary_width": "3",
+    "class_weights": "0.28, 0.72",
+    "dice_weight": "0.85",
+    "boundary_weight": "0.10"
+  },
+  "limits": [
+    "HoshiLM is a toy/small decoder-only Transformer experiment, not a production LLM.",
+    "Project QA should cite evidence files and avoid claiming metrics not present in the archive.",
+    "HTML UI does not contain fixed answer tables; it calls the local Python API."
+  ]
+}
+
+# Canonical QA Pairs
+
+질문: 데이터는 몇 장인가?
+답변: 원본 데이터는 train 120 images/120 masks, val 10 images/10 masks입니다. 증강 후에는 train 2400 images/2400 masks, val 10 images/10 masks입니다. pair check는 OK입니다.
+근거: project_facts.json
+
+질문: 데이터 누수는 확인했나?
+답변: 확인했습니다. newval in train=0, newval in val=10, oldval_pothole in train=10로 기록되어 있습니다. 새 검증셋은 train에 들어가지 않았다는 근거로 제시할 수 있습니다.
+근거: project_facts.json
+
+질문: mIoU는 어느 정도인가?
+답변: 기록된 train_log 기준 best binary mIoU는 epoch 3에서 0.7988입니다. 같은 row의 damage IoU는 0.7029, background IoU는 0.8947, pixel accuracy는 0.9157입니다. 마지막 기록 epoch 27의 binary mIoU는 0.7699입니다.
+근거: project_facts.json
+
+질문: damage IoU는 얼마인가?
+답변: damage IoU의 최고 기록은 epoch 3에서 0.7029입니다. 그 row의 binary mIoU는 0.7988입니다.
+근거: project_facts.json
+
+질문: 학습은 몇 epoch까지 기록됐나?
+답변: 현재 evidence summary의 train_log.csv에는 epoch 27까지 기록되어 있습니다. 설정상 목표 epoch와 실제 기록 epoch는 다를 수 있으므로 발표에서는 '현재 제출 패키지 evidence 기준'이라고 말하는 것이 안전합니다.
+근거: project_facts.json
+
+질문: 모델 구조는 어떻게 설명하나?
+답변: LiteRaceSegNet v6 A 설정은 model=lite_race, base_channels=24, context_channels=96, detail branch=true, context module=lite_aspp, boundary gate=true, boundary logit fusion=true로 요약할 수 있습니다.
+근거: project_facts.json
+
+질문: 학습 설정은 어떻게 되나?
+답변: 주 설정은 image_size=[384, 512], batch_size=4, epochs=90, base_lr=0.00045, boundary_width=3, class_weights=[0.28, 0.72], dice_weight=0.85, boundary_weight=0.10입니다.
+근거: project_facts.json
+
+질문: 이 HoshiLM은 무엇인가?
+답변: HoshiLM은 LiteRaceSegNet 이미지 모델과 별개의 소형 한국어 decoder-only Transformer 언어모델 실험입니다. v9 Project QA 확장 버전에서는 결과 파일을 읽어 만든 corpus와 facts를 기반으로 Project QA에 사용합니다. 대형 상용 LLM 수준 성능을 주장하지 않고, 재현 가능한 학습/검색/대화 파이프라인을 보여주는 목적입니다.
+근거: project_facts.json
+
+질문: 웹 UI 응답은 하드코딩 방식인가?
+답변: 아닙니다. web_project_qa/index.html은 질문을 Python API로 보내고, API가 project_facts.json 및 project_qa_corpus.txt를 검색해 답변합니다. 체크포인트가 있으면 HoshiLM 생성도 보조로 사용할 수 있습니다.
+근거: project_facts.json
+
+# SOURCE: lrs_v6_evidence_summary/V6_COUNTS_AND_LEAKAGE_CHECK.txt
+=== original current dataset ===
+train images: 120
+train masks : 120
+val images  : 10
+val masks   : 10
+=== v6 leakage check ===
+oldval_pothole in train should be 10: 10
+oldval_newval in train should be 0 : 0
+newval in train should be 0        : 0
+newval in val should be 10         : 10
+=== augmented dataset ===
+train images: 2400
+train masks : 2400
+val images  : 10
+val masks   : 10
+
+
+# SOURCE: lrs_v6_evidence_summary/V6_DATASET_MANIFEST.json
+{
+  "created_at": "20260509_214322",
+  "dataset_root": "datasets/pothole_binary/processed",
+  "backup": "datasets/_v6_backup_20260509_214322/pothole_binary_processed",
+  "before": {
+    "train_images": 110,
+    "train_masks": 110,
+    "val_images": 10,
+    "val_masks": 10
+  },
+  "old_val_added_to_train_with_prefix": "oldval_",
+  "old_val_added_pairs": [
+    [
+      "oldval_pothole_001.png",
+      "oldval_pothole_001.png"
+    ],
+    [
+      "oldval_pothole_002.png",
+      "oldval_pothole_002.png"
+    ],
+    [
+      "oldval_pothole_003.png",
+      "oldval_pothole_003.png"
+    ],
+    [
+      "oldval_pothole_004.png",
+      "oldval_pothole_004.png"
+    ],
+    [
+      "oldval_pothole_005.png",
+      "oldval_pothole_005.png"
+    ],
+    [
+      "oldval_pothole_006.png",
+      "oldval_pothole_006.png"
+    ],
+    [
+      "oldval_pothole_007.png",
+      "oldval_pothole_007.png"
+    ],
+    [
+      "oldval_pothole_008.png",
+      "oldval_pothole_008.png"
+    ],
+    [
+      "oldval_pothole_009.png",
+      "oldval_pothole_009.png"
+    ],
+    [
+      "oldval_pothole_010.png",
+      "oldval_pothole_010.png"
+    ]
+  ],
+  "new_val_zip": "/home/ubuntu/LRS_NEW_VAL_10_PAIRS_FIXED.zip",
+  "new_val_detected_root": "/tmp/tmp1mwgy4s0/new_val",
+  "new_val_pairs": [
+    [
+      "newval_001.png",
+      "newval_001.png"
+    ],
+    [
+      "newval_002.png",
+      "newval_002.png"
+    ],
+    [
+      "newval_003.png",
+      "newval_003.png"
+    ],
+    [
+      "newval_004.png",
+      "newval_004.png"
+    ],
+    [
+      "newval_005.png",
+      "newval_005.png"
+    ],
+    [
+      "newval_006.png",
+      "newval_006.png"
+    ],
+    [
+      "newval_007.png",
+      "newval_007.png"
+    ],
+    [
+      "newval_008.png",
+      "newval_008.png"
+    ],
+    [
+      "newval_009.png",
+      "newval_009.png"
+    ],
+    [
+      "newval_010.png",
+      "newval_010.png"
+    ]
+  ],
+  "expected_val_count": 10
+}
+
+# SOURCE: lrs_v6_evidence_summary/dataset_verify_aug_v6.txt
+train images=2400 masks=2400 missing_masks=0 missing_images=0 size_mismatch=0 empty_masks=0
+val images=10 masks=10 missing_masks=0 missing_images=0 size_mismatch=0 empty_masks=0
+[OK] all pairs valid
+
+
+# SOURCE: lrs_v6_evidence_summary/dataset_verify_original.txt
+train images=120 masks=120 missing_masks=0 missing_images=0 size_mismatch=0 empty_masks=0
+val images=10 masks=10 missing_masks=0 missing_images=0 size_mismatch=0 empty_masks=0
+[OK] all pairs valid
+
+
+# SOURCE: lrs_v6_evidence_summary/literace_v6_A_newval_balanced_s42/summary_best_last.json
+{
+  "csv": "final_evidence_v6_newval_with_visuals/literace_v6_A_newval_balanced_s42/train_log.csv",
+  "miou_key": "miou_binary",
+  "damage_key": "iou_damage",
+  "best_row_number": 3,
+  "best": {
+    "﻿epoch": "3",
+    "lr": "0.0004368614437687602",
+    "train_loss": "1.3924917131662369",
+    "val_loss": "0.8568061788876852",
+    "pixel_acc": "0.9157063802083333",
+    "miou_binary": "0.7987983434497284",
+    "iou_damage": "0.7028867287923498",
+    "iou_background": "0.8947099581071071",
+    "best": "1"
+  },
+  "last_row_number": 27,
+  "last": {
+    "﻿epoch": "27",
+    "lr": "0.00032958316858379226",
+    "train_loss": "1.2180814524491628",
+    "val_loss": "0.8302182157834371",
+    "pixel_acc": "0.9006281534830729",
+    "miou_binary": "0.769923918224904",
+    "iou_damage": "0.6634250629657832",
+    "iou_background": "0.8764227734840248",
+    "best": "0"
+  }
+}
+
+# SOURCE: lrs_v6_evidence_summary/literace_v6_A_newval_balanced_s42/train_log.csv
+﻿epoch,lr,train_loss,val_loss,pixel_acc,miou_binary,iou_damage,iou_background,best
+1,0.00044562640739709866,1.4842346189419429,0.959927519162496,0.8084701538085938,0.643754115120725,0.5324742562431869,0.7550339739982631,1
+2,0.00044124691370642,1.418406370083491,0.8034628431002299,0.9007517496744791,0.7774484766399808,0.6807945048167918,0.8741024484631699,1
+3,0.0004368614437687602,1.3924917131662369,0.8568061788876852,0.9157063802083333,0.7987983434497284,0.7028867287923498,0.8947099581071071,1
+4,0.00043246992059206845,1.372154040535291,0.8252255916595459,0.8949824015299479,0.7674581365200374,0.668082390633716,0.8668338824063587,0
+5,0.0004280722652849012,1.3501501031716665,0.8854042689005533,0.846490987141927,0.6951268660786704,0.5864872011629453,0.8037665309943954,0
+6,0.0004236683969866478,1.3222747465968132,0.8129054109255472,0.9009384155273438,0.7744560745029079,0.673400566123796,0.8755115828820197,0
+7,0.0004192582327943313,1.3148487415909766,0.8715365727742513,0.8797500610351563,0.7387473392704285,0.6284470497638711,0.8490476287769858,0
+8,0.00041484168768577193,1.2922218848268192,0.8175475200017294,0.8956029256184895,0.7638793359527302,0.6584626802092624,0.869295991696198,0
+9,0.0004104186744388884,1.2903199500838916,1.1402741471926372,0.7296162923177083,0.5460520856544024,0.43275794182203875,0.6593462294867662,0
+10,0.00040598910354688883,1.2777913976709048,0.9400948882102966,0.8177271525065104,0.6533302011608071,0.5380622391341897,0.7685981631874245,0
+11,0.0004015528831290922,1.2816197512547176,1.066285212834676,0.8743479410807292,0.6988334838589627,0.5456498309810456,0.8520171367368797,0
+12,0.00039710991883709347,1.2672637700041136,0.8406197627385458,0.8830276489257812,0.7460674032111347,0.6397812156876873,0.8523535907345823,0
+13,0.0003926601137559683,1.2600511752565702,0.8559422492980957,0.8841283162434895,0.7453979223723964,0.6360971651382449,0.854698679606548,0
+14,0.0003882033683001873,1.242947026292483,0.8553777734438578,0.8800425211588542,0.7399750570454617,0.6308376691272689,0.8491124449636546,0
+15,0.0003837395801038814,1.257362539966901,0.7773062586784363,0.9110850016276042,0.7908595963254998,0.6929559405984069,0.8887632520525927,0
+16,0.0003792686439050745,1.2460826765497526,0.8044861555099487,0.901873779296875,0.7750326931969413,0.6730273494104547,0.877038036983428,0
+17,0.0003747904514234638,1.2496425779660543,0.8487133979797363,0.900872802734375,0.7679723580900977,0.6584964113491084,0.8774483048310868,0
+18,0.00037030489123129613,1.2418016283710798,0.8858141700426737,0.8394877115885416,0.6798980746788228,0.5619250422347125,0.7978711071229331,0
+19,0.0003658118486168481,1.240157852669557,0.8646985292434692,0.900537618001302,0.764894115948435,0.6520345774968682,0.877753654400002,0
+20,0.0003613112054399758,1.2312397172053655,0.8542174498240153,0.892511494954427,0.7556236186957526,0.644793193400476,0.8664540439910291,0
+21,0.0003568028399791547,1.2376398159066837,0.9404644966125488,0.8352330525716146,0.6735072380542471,0.5542313244191983,0.7927831516892959,0
+22,0.00035228662676937647,1.2264122956991195,0.8679981430371603,0.8982666015625,0.7627968727406962,0.6511772697387352,0.8744164757426572,0
+23,0.00034776243643021385,1.223186968366305,0.9202134013175964,0.87137451171875,0.7215664877085932,0.6029872350179049,0.8401457403992817,0
+24,0.00034323013548330153,1.2210512974858283,0.8675238490104675,0.8753875732421875,0.7297683452971184,0.6151418567279251,0.8443948338663119,0
+25,0.000338689586158411,1.2178697034716606,0.9168904622395834,0.8251922607421875,0.6590741996403302,0.5375299568191207,0.7806184424615397,0
+26,0.0003341406461872205,1.2218591156601906,0.8143368164698283,0.9009073893229167,0.7718154597272968,0.6673041981447834,0.8763267213098104,0
+27,0.00032958316858379226,1.2180814524491628,0.8302182157834371,0.9006281534830729,0.769923918224904,0.6634250629657832,0.8764227734840248,0
+
+
+# SOURCE: lrs_v6_evidence_summary/pothole_binary_literace_v6_A_newval_balanced.yaml
+seed: 42
+device: cuda
+num_workers: 4
+
+data:
+  root: datasets/pothole_binary_aug_v6/processed
+  class_names:
+    - background
+    - pothole
+  ignore_index: 255
+  mask_positive_threshold: 0
+  mask_ignore_values: []
+  allow_fuzzy_filename_match: true
+  fuzzy_match_threshold: 0.82
+
+save_dir: seg/runs/literace_v6_A_newval_balanced_s42
+
+model:
+  name: lite_race
+  num_classes: 2
+  use_aux: true
+  base_channels: 24
+  context_channels: 96
+  use_detail_branch: true
+  context_module: lite_aspp
+  liteaspp_rates: [1, 2, 4]
+  use_boundary_gate: true
+  fuse_boundary_logit: true
+
+train:
+  image_size: [384, 512]
+  batch_size: 4
+  epochs: 90
+  amp: true
+  base_lr: 0.00045
+  weight_decay: 0.00008
+  grad_clip: 1.0
+  print_freq: 1
+  early_stopping_patience: 24
+  boundary_width: 3
+  class_weights: [0.28, 0.72]
+  loss:
+    ce_weight: 1.0
+    dice_weight: 0.85
+    aux_weight: 0.2
+    boundary_weight: 0.10
+
+val:
+  batch_size: 4
+
+optimizer:
+  name: adamw
+
+scheduler:
+  name: poly
+  power: 0.88
+  min_lr: 0.000003
+
+infer:
+  overlay_alpha: 0.45
+  palette:
+    - [30, 30, 30]
+    - [255, 90, 0]
+
+
+# SOURCE: lrs_v6_evidence_summary/pothole_binary_literace_v6_B_newval_recall.yaml
+seed: 42
+device: cuda
+num_workers: 4
+
+data:
+  root: datasets/pothole_binary_aug_v6/processed
+  class_names:
+    - background
+    - pothole
+  ignore_index: 255
+  mask_positive_threshold: 0
+  mask_ignore_values: []
+  allow_fuzzy_filename_match: true
+  fuzzy_match_threshold: 0.82
+
+save_dir: seg/runs/literace_v6_B_newval_recall_s42
+
+model:
+  name: lite_race
+  num_classes: 2
+  use_aux: true
+  base_channels: 24
+  context_channels: 96
+  use_detail_branch: true
+  context_module: lite_aspp
+  liteaspp_rates: [1, 2, 4]
+  use_boundary_gate: true
+  fuse_boundary_logit: true
+
+train:
+  image_size: [384, 512]
+  batch_size: 4
+  epochs: 90
+  amp: true
+  base_lr: 0.00042
+  weight_decay: 0.00008
+  grad_clip: 1.0
+  print_freq: 1
+  early_stopping_patience: 24
+  boundary_width: 3
+  class_weights: [0.22, 0.78]
+  loss:
+    ce_weight: 1.0
+    dice_weight: 1.0
+    aux_weight: 0.2
+    boundary_weight: 0.12
+
+val:
+  batch_size: 4
+
+optimizer:
+  name: adamw
+
+scheduler:
+  name: poly
+  power: 0.88
+  min_lr: 0.000003
+
+infer:
+  overlay_alpha: 0.45
+  palette:
+    - [30, 30, 30]
+    - [255, 90, 0]
+
+
+# SOURCE: lrs_v6_evidence_summary/pothole_binary_literace_v6_C_newval_precision.yaml
+seed: 42
+device: cuda
+num_workers: 4
+
+data:
+  root: datasets/pothole_binary_aug_v6/processed
+  class_names:
+    - background
+    - pothole
+  ignore_index: 255
+  mask_positive_threshold: 0
+  mask_ignore_values: []
+  allow_fuzzy_filename_match: true
+  fuzzy_match_threshold: 0.82
+
+save_dir: seg/runs/literace_v6_C_newval_precision_s42
+
+model:
+  name: lite_race
+  num_classes: 2
+  use_aux: true
+  base_channels: 24
+  context_channels: 96
+  use_detail_branch: true
+  context_module: lite_aspp
+  liteaspp_rates: [1, 2, 4]
+  use_boundary_gate: true
+  fuse_boundary_logit: true
+
+train:
+  image_size: [384, 512]
+  batch_size: 4
+  epochs: 80
+  amp: true
+  base_lr: 0.00038
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  print_freq: 1
+  early_stopping_patience: 22
+  boundary_width: 3
+  class_weights: [0.36, 0.64]
+  loss:
+    ce_weight: 1.0
+    dice_weight: 0.72
+    aux_weight: 0.2
+    boundary_weight: 0.08
+
+val:
+  batch_size: 4
+
+optimizer:
+  name: adamw
+
+scheduler:
+  name: poly
+  power: 0.88
+  min_lr: 0.000003
+
+infer:
+  overlay_alpha: 0.45
+  palette:
+    - [30, 30, 30]
+    - [255, 90, 0]
+
+
+# SOURCE: lrs_v6_evidence_summary/pothole_binary_literace_v6_D_safe_oom.yaml
+seed: 42
+device: cuda
+num_workers: 4
+
+data:
+  root: datasets/pothole_binary_aug_v6/processed
+  class_names:
+    - background
+    - pothole
+  ignore_index: 255
+  mask_positive_threshold: 0
+  mask_ignore_values: []
+  allow_fuzzy_filename_match: true
+  fuzzy_match_threshold: 0.82
+
+save_dir: seg/runs/literace_v6_D_safe_oom_s42
+
+model:
+  name: lite_race
+  num_classes: 2
+  use_aux: true
+  base_channels: 24
+  context_channels: 96
+  use_detail_branch: true
+  context_module: lite_aspp
+  liteaspp_rates: [1, 2, 4]
+  use_boundary_gate: true
+  fuse_boundary_logit: true
+
+train:
+  image_size: [320, 448]
+  batch_size: 2
+  epochs: 80
+  amp: true
+  base_lr: 0.00035
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  print_freq: 1
+  early_stopping_patience: 22
+  boundary_width: 3
+  class_weights: [0.28, 0.72]
+  loss:
+    ce_weight: 1.0
+    dice_weight: 0.85
+    aux_weight: 0.2
+    boundary_weight: 0.10
+
+val:
+  batch_size: 4
+
+optimizer:
+  name: adamw
+
+scheduler:
+  name: poly
+  power: 0.88
+  min_lr: 0.000003
+
+infer:
+  overlay_alpha: 0.45
+  palette:
+    - [30, 30, 30]
+    - [255, 90, 0]
+
+
+# SOURCE: docs/BRANDING_NOTE_HOSHILM.md
+# Branding Note: HoshiLM-KR
+
+The language-model module in v8 is branded as **HoshiLM-KR**.
+
+Reason:
+- Avoid implying association with any commercial chatbot or trademarked product name.
+- Present the module as an original, educational decoder-only Transformer language-model lab.
+- Keep the claim modest: this is a toy-scale research/learning implementation, not a production assistant or large commercial language model.
+
+Recommended wording:
+
+> HoshiLM-KR is a toy-scale decoder-only Transformer language-model implementation for reproducing the core pipeline of tokenization, causal self-attention, next-token prediction, checkpointing, and sampling.
+
+Avoid wording:
+
+> We built a commercial-scale chatbot.
+> This is equivalent to a large production language model.
+
+
+# SOURCE: docs/CHANGELOG_V8.md
+# V8 Changelog
+
+## v8: Vision + HoshiLM Lab
+
+### Added
+
+- `hoshilm_kr/`: clean HoshiLM-KR training module
+- `model.py`: decoder-only Transformer implementation
+- `train_hoshilm.py`: training loop with train/val split, checkpointing, logging, mixed precision support
+- `generate.py`: checkpoint-based text generation
+- `estimate_params.py`: model scale estimator
+- `configs/`: S/M/L/XL/legacy configs
+- `web_demo/`: static v8 project showcase
+- `docs/figures/`: LiteRaceSegNet metric figures and parameter scale figure
+
+### Preserved
+
+- Existing LiteRaceSegNet visual evidence archive
+- Existing v7 WWDC-style presentation deck
+- Uploaded legacy HoshiLM scripts under `hoshilm_kr/legacy/`
+
+### Corrected framing
+
+- Legacy comment suggested a 100M-parameter setup, but the uploaded 6-layer/384-dim/vocab-660 prototype is closer to an ~11M-class model.
+- V8 provides explicit configs for 5M/14M/30M/~95M scale experiments.
+
+
+
+# SOURCE: docs/MODEL_CARD_HOSHILM_KR.md
+# Model Card: HoshiLM-KR Lab
+
+## Intended use
+
+Educational reproduction of a decoder-only Transformer decoder-only language model pipeline.
+
+## Non-goals
+
+- Not a production LLM
+- Not a commercial chatbot clone
+- Not trained on a sufficiently large corpus for general language understanding
+- Not intended for public deployment as an open chatbot
+
+## Architecture
+
+- Decoder-only Transformer
+- Causal self-attention
+- Learned token embeddings
+- Learned positional embeddings
+- MLP feed-forward blocks
+- LayerNorm and residual connections
+- Next-token prediction objective
+
+## Data
+
+The current package includes a small Korean dummy corpus. It is suitable for smoke tests and overfitting checks, not for broad language capability.
+
+## Known limitations
+
+- Small data causes memorization
+- Generated text may be repetitive or incoherent
+- XL config needs larger corpus and longer training
+- No alignment, safety tuning, retrieval, or instruction tuning
+
+## Recommended presentation wording
+
+> HoshiLM-KR is a toy-scale decoder-only Transformer implementation for reproducing the core decoder-only Transformer training pipeline. It demonstrates tokenization, causal self-attention, next-token prediction, checkpointing, and sampling on a small Korean corpus.
+
+
+
+# SOURCE: docs/V8_PRESENTATION_NOTES.md
+# V8 Presentation Notes
+
+## One-line summary
+
+LiteRaceSegNet v8 combines a lightweight road-damage segmentation model with a toy-scale decoder-only Transformer language model lab, showing both computer vision and language model implementation experience.
+
+## Recommended slide structure
+
+1. v8 overview: Vision + HoshiLM Lab
+2. LiteRaceSegNet recap: road damage segmentation
+3. Evidence: dataset count, leakage check, validation metrics
+4. LiteRaceSegNet scale: 0.125M params
+5. Why add HoshiLM-KR?
+6. HoshiLM-KR architecture: decoder-only Transformer
+7. HoshiLM-KR training pipeline
+8. Parameter scale: S/M/L/XL configs
+9. What this proves / what it does not prove
+10. Future work: bigger corpus and cleaner evaluation
+
+## Safe Q&A
+
+### Q. Did you build large commercial LM?
+
+No. This is not a large-commercial-LM-class model. It is a toy-scale decoder-only Transformer implementation designed to reproduce the core decoder-only Transformer training process.
+
+### Q. Why is this relevant to LiteRaceSegNet?
+
+LiteRaceSegNet shows computer vision modeling. HoshiLM-KR shows language model architecture understanding. Together, v8 presents a broader AI implementation portfolio while keeping the original road-damage project intact.
+
+
+
+# SOURCE: docs/lrs_v6_v7_param_summary.json
+{
+  "checkpoint": "best.pth",
+  "state_dict_total_tensors": 218,
+  "state_dict_total_elements": 129120,
+  "estimated_trainable_parameters_excluding_bn_buffers": 124509,
+  "estimated_params_m": 0.124509,
+  "fp32_param_size_mib": 0.4749641418457031
+}
+
+# SOURCE: README_V8.md
+# LiteRaceSegNet v8 Combined Package
+
+This package combines the split LiteRaceSegNet v6 visual evidence archive with a new **HoshiLM-KR Lab** module.
+
+**HoshiLM-KR** is the rebranded name for the uploaded mini language-model prototype. It avoids product-name confusion and presents the work as an original educational decoder-only Transformer LM experiment.
+
+## What v8 adds
+
+- LiteRaceSegNet evidence archive preserved under `lrs_evidence_base/`
+- WWDC-style v7 presentation decks preserved under `presentation/`
+- HoshiLM-KR module under `hoshilm_kr/`
+- Static web demo under `web_demo/`
+- Documentation under `docs/`
+
+## Safe project framing
+
+Do **not** present HoshiLM-KR as a large-commercial-LM-class system.
+
+Use this wording:
+
+> HoshiLM-KR is a toy-scale decoder-only Transformer language model implemented for reproducing the core decoder-only Transformer training pipeline: tokenization, causal self-attention, next-token prediction, checkpointing, and sampling.
+
+Avoid this wording:
+
+> We built large commercial LM.
+> We built commercial chatbot.
+> We built a production LLM.
+
+## Key numbers
+
+### LiteRaceSegNet evidence checkpoint
+
+- Estimated trainable parameters: **124,509**
+- Estimated parameter scale: **0.125M**
+- FP32 parameter size: **0.475 MiB**
+- Best validation binary mIoU from evidence: **0.7988**
+- Damage IoU at best epoch: **0.7029**
+
+### HoshiLM-KR config scale
+
+Expected parameter scale depends on tokenizer vocabulary size.
+
+| Config | Layers | Heads | Embedding | Block | Expected scale |
+|---|---:|---:|---:|---:|---:|
+| HoshiLM-S | 4 | 4 | 256 | 128 | ~5M with vocab≈8k |
+| HoshiLM-M | 6 | 6 | 384 | 256 | ~14M with vocab≈8k |
+| HoshiLM-L | 8 | 8 | 512 | 384 | ~30M with vocab≈8k |
+| HoshiLM-XL experimental | 12 | 12 | 768 | 512 | ~95M with vocab≈12k |
+
+The uploaded legacy prototype used a very small SentencePiece vocab of 660, so its true scale is smaller than a normal subword-vocab decoder-only Transformer configuration.
+
+## Quick start: HoshiLM-KR
+
+```bash
+cd hoshilm_kr
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python estimate_params.py --config configs/hoshilm_m.yaml
+python train_hoshilm.py --config configs/hoshilm_m.yaml
+python generate.py --ckpt runs/hoshilm_m/best.pt --prompt "LiteRaceSegNet 프로젝트는" --tokens 160
+```
+
+On Windows PowerShell:
+
+```powershell
+cd hoshilm_kr
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python estimate_params.py --config configs/hoshilm_m.yaml
+python train_hoshilm.py --config configs/hoshilm_m.yaml
+python generate.py --ckpt runs/hoshilm_m\best.pt --prompt "LiteRaceSegNet 프로젝트는" --tokens 160
+```
+
+## Web demo
+
+Open:
+
+```text
+web_demo/index.html
+```
+
+This is a static project showcase page. The previous mock assistant/chat section was removed from the submission-clean package to avoid confusion with a deployed chatbot.
+
+
+
+# SOURCE: V8_MANIFEST.json
+{
+  "package": "LiteRaceSegNet_v8_combined_package",
+  "created_from": [
+    "LRS_V6_NEWVAL_EVIDENCE_WITH_VISUALS_literace_v6_A_newval_balanced_s42(4).zip",
+    "LiteRaceSegNet_v7_WWDC_style_deck.pptx",
+    "uploaded HoshiLM prototype files: mini_gpt.py, make_spm.py, sp.model, sp.vocab, data.txt"
+  ],
+  "v8_additions": [
+    "hoshilm_kr/model.py",
+    "hoshilm_kr/train_hoshilm.py",
+    "hoshilm_kr/generate.py",
+    "hoshilm_kr/configs",
+    "web_demo/index.html",
+    "docs/MODEL_CARD_HOSHILM_KR.md"
+  ],
+  "lrs_metrics": {
+    "estimated_trainable_params": 124509,
+    "params_m": 0.124509,
+    "best_val_miou_binary": 0.7987983434497284,
+    "best_val_iou_damage": 0.7028867287923498,
+    "augmented_train_pairs": 2400,
+    "new_val_pairs": 10,
+    "newval_leakage_into_train": 0
+  },
+  "package_name": "LiteRaceSegNet_v8_HoshiLM_combined_package",
+  "language_module_name": "HoshiLM-KR",
+  "branding_policy": "No public-facing third-party chatbot branding. HoshiLM-KR is an original toy-scale decoder-only Transformer LM module.",
+  "hoshilm_configs": {
+    "S": "~5M params with vocab≈8k",
+    "M": "~14M params with vocab≈8k",
+    "L": "~30M params with vocab≈8k",
+    "XL_experimental": "~95M params with vocab≈12k, needs much larger corpus"
+  },
+  "submission_clean_note": "Optional chat layer removed in v9 submission-clean package; HoshiLM-KR training module remains."
+}
+
+
+# SOURCE: docs/BRANDING_NOTE_HOSHILM.md
+# Branding Note: HoshiLM-KR
+
+The language-model module in v8 is branded as **HoshiLM-KR**.
+
+Reason:
+- Avoid implying association with any commercial chatbot or trademarked product name.
+- Present the module as an original, educational decoder-only Transformer language-model lab.
+- Keep the claim modest: this is a toy-scale research/learning implementation, not a production assistant or large commercial language model.
+
+Recommended wording:
+
+> HoshiLM-KR is a toy-scale decoder-only Transformer language-model implementation for reproducing the core pipeline of tokenization, causal self-attention, next-token prediction, checkpointing, and sampling.
+
+Avoid wording:
+
+> We built a commercial-scale chatbot.
+> This is equivalent to a large production language model.
+
+
+# SOURCE: docs/CHANGELOG_V8.md
+# V8 Changelog
+
+## v8: Vision + HoshiLM Lab
+
+### Added
+
+- `hoshilm_kr/`: clean HoshiLM-KR training module
+- `model.py`: decoder-only Transformer implementation
+- `train_hoshilm.py`: training loop with train/val split, checkpointing, logging, mixed precision support
+- `generate.py`: checkpoint-based text generation
+- `estimate_params.py`: model scale estimator
+- `configs/`: S/M/L/XL/legacy configs
+- `web_demo/`: static v8 project showcase
+- `docs/figures/`: LiteRaceSegNet metric figures and parameter scale figure
+
+### Preserved
+
+- Existing LiteRaceSegNet visual evidence archive
+- Existing v7 WWDC-style presentation deck
+- Uploaded legacy HoshiLM scripts under `hoshilm_kr/legacy/`
+
+### Corrected framing
+
+- Legacy comment suggested a 100M-parameter setup, but the uploaded 6-layer/384-dim/vocab-660 prototype is closer to an ~11M-class model.
+- V8 provides explicit configs for 5M/14M/30M/~95M scale experiments.
+
+
+
+# SOURCE: docs/MODEL_CARD_HOSHILM_KR.md
+# Model Card: HoshiLM-KR Lab
+
+## Intended use
+
+Educational reproduction of a decoder-only Transformer decoder-only language model pipeline.
+
+## Non-goals
+
+- Not a production LLM
+- Not a commercial chatbot clone
+- Not trained on a sufficiently large corpus for general language understanding
+- Not intended for public deployment as an open chatbot
+
+## Architecture
+
+- Decoder-only Transformer
+- Causal self-attention
+- Learned token embeddings
+- Learned positional embeddings
+- MLP feed-forward blocks
+- LayerNorm and residual connections
+- Next-token prediction objective
+
+## Data
+
+The current package includes a small Korean dummy corpus. It is suitable for smoke tests and overfitting checks, not for broad language capability.
+
+## Known limitations
+
+- Small data causes memorization
+- Generated text may be repetitive or incoherent
+- XL config needs larger corpus and longer training
+- No alignment, safety tuning, retrieval, or instruction tuning
+
+## Recommended presentation wording
+
+> HoshiLM-KR is a toy-scale decoder-only Transformer implementation for reproducing the core decoder-only Transformer training pipeline. It demonstrates tokenization, causal self-attention, next-token prediction, checkpointing, and sampling on a small Korean corpus.
+
+
+
+# SOURCE: docs/V8_PRESENTATION_NOTES.md
+# V8 Presentation Notes
+
+## One-line summary
+
+LiteRaceSegNet v8 combines a lightweight road-damage segmentation model with a toy-scale decoder-only Transformer language model lab, showing both computer vision and language model implementation experience.
+
+## Recommended slide structure
+
+1. v8 overview: Vision + HoshiLM Lab
+2. LiteRaceSegNet recap: road damage segmentation
+3. Evidence: dataset count, leakage check, validation metrics
+4. LiteRaceSegNet scale: 0.125M params
+5. Why add HoshiLM-KR?
+6. HoshiLM-KR architecture: decoder-only Transformer
+7. HoshiLM-KR training pipeline
+8. Parameter scale: S/M/L/XL configs
+9. What this proves / what it does not prove
+10. Future work: bigger corpus and cleaner evaluation
+
+## Safe Q&A
+
+### Q. Did you build large commercial LM?
+
+No. This is not a large-commercial-LM-class model. It is a toy-scale decoder-only Transformer implementation designed to reproduce the core decoder-only Transformer training process.
+
+### Q. Why is this relevant to LiteRaceSegNet?
+
+LiteRaceSegNet shows computer vision modeling. HoshiLM-KR shows language model architecture understanding. Together, v8 presents a broader AI implementation portfolio while keeping the original road-damage project intact.
+
+
+
+# SOURCE: docs/lrs_v6_v7_param_summary.json
+{
+  "checkpoint": "best.pth",
+  "state_dict_total_tensors": 218,
+  "state_dict_total_elements": 129120,
+  "estimated_trainable_parameters_excluding_bn_buffers": 124509,
+  "estimated_params_m": 0.124509,
+  "fp32_param_size_mib": 0.4749641418457031
+}
+
+# SOURCE: hoshilm_kr/README.md
+# HoshiLM-KR Lab
+
+A toy-scale decoder-only Transformer language model implementation for understanding decoder-only Transformer language modeling.
+
+## Scope
+
+This module implements:
+
+- Tokenization with either char-level tokenizer or SentencePiece
+- Token embedding + positional embedding
+- Causal self-attention
+- Transformer decoder blocks
+- Next-token prediction loss
+- Train/validation split
+- Checkpoint saving
+- Top-k sampling
+
+## Not a production LLM
+
+HoshiLM-KR is not large commercial LM, not commercial chatbot, and not a production chatbot. It is a small reproducibility/learning project.
+
+## Recommended run order
+
+```bash
+pip install -r requirements.txt
+python estimate_params.py --config configs/hoshilm_m.yaml
+python train_hoshilm.py --config configs/hoshilm_m.yaml
+python generate.py --ckpt runs/hoshilm_m/best.pt --prompt "프로젝트는" --tokens 160
+```
+
+## Config choice
+
+- `hoshilm_s.yaml`: safe quick run
+- `hoshilm_m.yaml`: main v8 run
+- `hoshilm_l.yaml`: GPU experiment after expanding data
+- `hoshilm_xl_100m_experimental.yaml`: near-100M experiment, only meaningful with a much larger corpus
+- `legacy_sp660.yaml`: reproduces the uploaded SentencePiece-660 setup
+
+## Dataset warning
+
+The included `data/data.txt` is a small dummy corpus. It is useful for smoke tests and pipeline verification, but it is not enough to train a useful language model. Increase corpus size before using the L/XL configs.
+
+
+## v9 Project QA Extension: Project QA Web Chat
+
+```bash
+bash run_project_qa_build.sh
+bash run_project_qa_train.sh
+bash run_project_qa_web.sh
+```
+
+Open `http://AWS_PUBLIC_IP:8000` after allowing port 8000 in the EC2 security group. The HTML UI does not contain hard-coded answers. It calls the local Python API, which reads `data/project_facts.json` and `data/project_qa_corpus.txt`; if `runs/hoshilm_project_qa/best.pt` exists, HoshiLM generation can be used as an auxiliary note.
+
+
+# SOURCE: hoshilm_kr/configs/hoshilm_l.yaml
+# GPU config for AWS g6/L4-style runs. Use only after expanding the corpus.
+# Expected scale with vocab≈8k: ~29.6M params.
+seed: 42
+device: auto
+data_path: data/data.txt
+out_dir: runs/hoshilm_l
+tokenizer: char
+expected_vocab_size: 8000
+block_size: 384
+n_layer: 8
+n_head: 8
+n_embd: 512
+dropout: 0.12
+bias: true
+tie_weights: true
+batch_size: 8
+gradient_accumulation_steps: 8
+learning_rate: 0.0002
+weight_decay: 0.10
+grad_clip: 1.0
+max_iters: 15000
+eval_interval: 500
+save_interval: 1500
+eval_iters: 30
+train_ratio: 0.90
+dtype: bfloat16
+sample_prompt: "프로젝트의 핵심은"
+sample_tokens: 200
+temperature: 0.8
+top_k: 50
+
+
+# SOURCE: hoshilm_kr/configs/hoshilm_m.yaml
+# Main V8 config. This upgrades the old 6-layer/384-dim HoshiLM into a cleaner trainable pipeline.
+# Expected scale with vocab≈8k: ~13.8M params. Existing legacy sp.model had vocab=660, so actual legacy scale was ~11.2M.
+seed: 42
+device: auto
+data_path: data/data.txt
+out_dir: runs/hoshilm_m
+tokenizer: char
+expected_vocab_size: 8000
+block_size: 256
+n_layer: 6
+n_head: 6
+n_embd: 384
+dropout: 0.10
+bias: true
+tie_weights: true
+batch_size: 16
+gradient_accumulation_steps: 4
+learning_rate: 0.00025
+weight_decay: 0.10
+grad_clip: 1.0
+max_iters: 8000
+eval_interval: 250
+save_interval: 1000
+eval_iters: 30
+train_ratio: 0.90
+dtype: bfloat16
+sample_prompt: "LiteRaceSegNet 프로젝트는"
+sample_tokens: 160
+temperature: 0.8
+top_k: 50
+
+
+# SOURCE: hoshilm_kr/configs/hoshilm_project_qa.yaml
+seed: 42
+device: auto
+dtype: bfloat16
+tokenizer: char
+data_path: data/data_project_qa.txt
+out_dir: runs/hoshilm_project_qa
+train_ratio: 0.92
+block_size: 384
+n_layer: 6
+n_head: 6
+n_embd: 384
+dropout: 0.08
+bias: true
+tie_weights: true
+batch_size: 12
+gradient_accumulation_steps: 4
+learning_rate: 0.00035
+weight_decay: 0.08
+grad_clip: 1.0
+max_iters: 6000
+eval_interval: 250
+eval_iters: 30
+save_interval: 500
+sample_prompt: "질문: 데이터는 몇 장인가?
+답변:"
+sample_tokens: 220
+temperature: 0.7
+top_k: 40
+
+
+# SOURCE: hoshilm_kr/configs/hoshilm_project_qa_smoke.yaml
+seed: 42
+device: auto
+dtype: bfloat16
+tokenizer: char
+data_path: data/data_project_qa.txt
+out_dir: runs/hoshilm_project_qa_smoke
+train_ratio: 0.92
+block_size: 192
+n_layer: 2
+n_head: 2
+n_embd: 128
+dropout: 0.05
+bias: true
+tie_weights: true
+batch_size: 8
+gradient_accumulation_steps: 2
+learning_rate: 0.0005
+weight_decay: 0.05
+grad_clip: 1.0
+max_iters: 80
+eval_interval: 20
+eval_iters: 5
+save_interval: 40
+sample_prompt: "질문: mIoU는 어느 정도인가?
+답변:"
+sample_tokens: 160
+temperature: 0.7
+top_k: 40
+
+
+# SOURCE: hoshilm_kr/configs/hoshilm_s.yaml
+# Safe starter config for the uploaded dummy Korean corpus.
+# Expected scale with vocab≈8k: ~5.3M params. With char tokenizer: smaller, but fast.
+seed: 42
+device: auto
+data_path: data/data.txt
+out_dir: runs/hoshilm_s
+tokenizer: char
+expected_vocab_size: 8000
+block_size: 128
+n_layer: 4
+n_head: 4
+n_embd: 256
+dropout: 0.10
+bias: true
+tie_weights: true
+batch_size: 32
+gradient_accumulation_steps: 2
+learning_rate: 0.0003
+weight_decay: 0.10
+grad_clip: 1.0
+max_iters: 3000
+eval_interval: 200
+save_interval: 500
+eval_iters: 20
+train_ratio: 0.90
+dtype: bfloat16
+sample_prompt: "프로젝트는"
+sample_tokens: 120
+temperature: 0.8
+top_k: 40
+
+
+# SOURCE: hoshilm_kr/configs/hoshilm_smoke_aws.yaml
+# AWS smoke-test config: verifies the HoshiLM pipeline without a long training run.
+seed: 42
+device: auto
+data_path: data/data.txt
+out_dir: runs/hoshilm_smoke_aws
+tokenizer: char
+block_size: 64
+n_layer: 2
+n_head: 2
+n_embd: 128
+dropout: 0.10
+bias: true
+tie_weights: true
+batch_size: 16
+gradient_accumulation_steps: 1
+learning_rate: 0.0005
+weight_decay: 0.10
+grad_clip: 1.0
+max_iters: 60
+eval_interval: 20
+save_interval: 20
+eval_iters: 5
+train_ratio: 0.90
+dtype: bfloat16
+sample_prompt: "LiteRaceSegNet 프로젝트는"
+sample_tokens: 80
+temperature: 0.8
+top_k: 40
+
+
+# SOURCE: hoshilm_kr/configs/hoshilm_xl_100m_experimental.yaml
+# Experimental near-100M config. Do NOT use with only the current 57KB dummy corpus.
+# Needs much larger text data. Otherwise it will memorize and overfit.
+# Expected scale with vocab≈12k: ~94.7M params.
+seed: 42
+device: auto
+data_path: data/data.txt
+out_dir: runs/hoshilm_xl_100m
+tokenizer: sentencepiece
+sp_model_path: tokenizer/sp.model
+expected_vocab_size: 12000
+block_size: 512
+n_layer: 12
+n_head: 12
+n_embd: 768
+dropout: 0.15
+bias: true
+tie_weights: true
+batch_size: 2
+gradient_accumulation_steps: 32
+learning_rate: 0.00015
+weight_decay: 0.10
+grad_clip: 1.0
+max_iters: 30000
+eval_interval: 500
+save_interval: 2000
+eval_iters: 20
+train_ratio: 0.90
+dtype: bfloat16
+sample_prompt: "이 프로젝트는"
+sample_tokens: 200
+temperature: 0.85
+top_k: 50
+
+
+# SOURCE: hoshilm_kr/configs/legacy_sp660.yaml
+# Compatibility config for the uploaded old sp.model/sp.vocab tokenizer.
+# This reproduces the old 6-layer/384-dim idea with SentencePiece vocab=660.
+seed: 42
+device: auto
+data_path: data/data.txt
+out_dir: runs/legacy_sp660
+tokenizer: sentencepiece
+sp_model_path: tokenizer/sp.model
+expected_vocab_size: 660
+block_size: 128
+n_layer: 6
+n_head: 6
+n_embd: 384
+dropout: 0.20
+bias: true
+tie_weights: true
+batch_size: 16
+gradient_accumulation_steps: 4
+learning_rate: 0.0003
+weight_decay: 0.01
+grad_clip: 1.0
+max_iters: 5000
+eval_interval: 250
+save_interval: 1000
+eval_iters: 20
+train_ratio: 0.90
+dtype: bfloat16
+sample_prompt: "오늘은"
+sample_tokens: 120
+temperature: 0.7
+top_k: 20
+
+
+# SOURCE: hoshilm_kr/data/data.txt
+오늘 아침은 평소와 다르게 유난히 조용했지만, 마음속에서는 해결해야 할 일들이 계속 흘러넘쳐 집중하기 어려웠다.
+작은 회의라도 준비하려면 생각보다 정리해야 할 정보가 많아서 미리 시작하지 않으면 마감일에 쫓기기 쉽다.
+데이터 분석을 하다 보면 예상치 못한 결측치나 오류가 발견되기 마련이라, 이를 대비한 예외 처리 로직을 반드시 넣어야 한다.
+기획안을 작성하면서 가장 어려웠던 부분은 다양한 이해관계자들의 요구사항을 하나의 흐름으로 묶는 일이었다.
+보고서를 제출한 뒤에도 혹시 빠진 내용이 있을까 걱정되어 다시 한번 전체 문서를 꼼꼼하게 확인했다.
+업무 속도가 느린 날에는 잡다한 잡음들이 신경을 거슬리게 하여 작은 일에도 크게 집중력이 흔들린다.
+새로운 프로젝트가 시작되면 설렘도 있지만 동시에 실패에 대한 두려움도 함께 따라오기 마련이다.
+오늘 받은 이메일 중 일부는 중요한 내용이었지만, 바쁜 일정 때문에 답장을 미루다 보니 계속 쌓여 스트레스로 이어졌다.
+변화가 빠른 환경 속에서는 기존의 방식만 고집하면 금세 도태될 수 있기 때문에, 끊임없는 학습과 적응이 필요하다.
+회의 시간에 갑자기 변경된 요구사항 때문에 전체 일정이 뒤엉켜 다시 계획을 세울 수밖에 없었다.
+모델의 성능이 기대보다 낮게 나오는 이유를 찾기 위해 여러 하이퍼파라미터를 조정하며 수십 번의 실험을 반복했다.
+최근 발표된 기술 동향 보고서를 읽어보니 인공지능 산업 전반이 다시 급속도로 성장하고 있다는 사실을 확인할 수 있었다.
+어제 밤늦게까지 코드 디버깅을 하다 보니 오늘 아침에는 머리가 무겁고 작은 작업에도 오래 걸렸다.
+팀 내부의 의사소통은 원활해 보였지만 실제 구현 단계에서는 서로의 이해 차이로 인해 여러 충돌이 발생했다.
+학습 데이터가 충분하지 않으면 어떤 알고리즘을 사용하더라도 안정적인 결과를 기대하기 어렵다.
+오늘은 미뤄왔던 일들을 한꺼번에 처리하느라 정신없이 바빴지만, 끝내고 나니 묘한 성취감이 느껴졌다.
+규칙적인 생활이 중요하다는 것을 알면서도 요즘같이 일정이 불규칙할 땐 지키기 어려워 자꾸 피로가 쌓인다.
+예상보다 많은 양의 데이터를 검토해야 해서 처음 계획했던 업무 시간이 크게 늦어졌다.
+복잡한 문제일수록 단순한 해결책을 먼저 떠올려 보라는 선배의 조언이 오늘따라 더 크게 와닿았다.
+일이 많을 때일수록 우선순위를 명확히 정해두지 않으면, 결국 해야 할 일을 제대로 끝내지 못하고 하루가 지나간다.
+데이터셋이 커질수록 전처리에 걸리는 시간이 기하급수적으로 증가하므로 효율적인 파이프라인 구축이 필수적이다.
+오늘 회의에서는 여러 의견이 오갔지만 핵심 쟁점에 대한 명확한 결론은 내지 못하고 다음 회의로 넘어가게 되었다.
+새로운 기술을 도입하는 데 있어서 가장 중요한 것은 팀 전체가 이를 충분히 이해하고 합의하는 과정이다.
+예측 모델이 실제 데이터와 다르게 동작하는 이유를 찾는 과정은 때로는 퍼즐을 푸는 것처럼 흥미롭기도 하다.
+조용한 환경에 익숙해져 있다가 갑작스럽게 시끄러운 장소에서 일하려니 집중력이 크게 떨어졌다.
+며칠 동안 계속된 야근 때문에 몸이 무거웠지만 정작 침대에 누우면 잠이 쉽게 오지 않아 더욱 피로가 쌓였다.
+오늘은 평소보다 미팅이 많아서 정작 내가 해야 할 본업은 거의 손도 대지 못했다.
+학습한 내용을 실제 상황에 적용하려면 단순한 이론 이해를 넘어서 다양한 사례를 경험하는 것이 중요하다.
+기술 문서를 읽을 때는 단순히 내용을 받아들이기보다 왜 그렇게 설계했는지 의도를 파악하는 것이 더 도움이 된다.
+작은 실수 하나가 전체 시스템 오류로 이어질 수 있기 때문에, 테스트 단계에서는 항상 꼼꼼함을 유지해야 한다.
+문제를 해결하는 과정에서 예상치 못한 장애물이 나타나면 계획을 유연하게 변경해야 한다는 것을 다시 느꼈다.
+오늘은 팀원 모두가 피곤해 보였지만 서로를 격려하며 끝까지 프로젝트를 진행하려는 분위기였다.
+기분이 우울한 날에는 아무리 쉬운 작업이라도 시작하기가 어렵고, 집중력도 평소보다 훨씬 낮아진다.
+인터넷 연결이 불안정해서 작업 흐름이 자꾸 끊기자 작은 문제도 크게 느껴졌다.
+오늘 발표를 위해 준비한 내용들은 대부분 예상 질문과 잘 맞아 무난하게 진행할 수 있었다.
+중요한 발표가 끝난 후 찾아오는 해방감은 말로 표현하기 어려울 정도로 짜릿하다.
+계획이 아무리 완벽해 보여도 예상하지 못한 변수가 등장하면 언제든 모든 것이 뒤집힐 수 있다.
+오늘 회식에서는 업무 이야기가 아닌 서로의 개인적인 이야기를 나누며 관계가 조금 더 가까워진 느낌이다.
+기획 단계에서 항상 고려해야 하는 것은 사용자 입장에서 실제로 어떤 경험을 하게 될지이다.
+처음에는 단순해 보였던 문제도 깊이 분석하다 보면 예상보다 훨씬 복잡한 구조로 얽혀 있음을 깨닫게 된다.
+감정이 복잡하게 얽혀 있을 때는 누군가에게 털어놓기 어려워 혼자 끙끙 앓게 되는 경우가 많다.
+오늘은 정신없이 바빴지만 일이 잘 풀려 오랜만에 만족스러운 하루였다.
+데이터베이스 최적화 작업은 작은 설정 하나로도 전체 성능이 크게 좌우되기 때문에 신중하게 접근해야 한다.
+회의록을 정리하면서 다시 내용을 읽어보니 처음 들을 때보다 더 많은 부분이 이해되었다.
+오늘 날씨는 흐렸지만 오히려 그런 분위기 덕분에 차분하게 업무를 처리할 수 있었다.
+모델의 학습률을 조금만 잘못 설정해도 결과가 완전히 달라지기 때문에 세심한 튜닝이 필요하다.
+실수를 두려워하면 새로운 시도를 하지 못하게 되고 결국 성장의 기회를 놓칠 수 있다.
+오늘 작성한 코드는 기능적으로는 문제 없지만 가독성을 더 높일 필요가 있다는 피드백을 받았다.
+평소보다 일찍 일어났음에도 불구하고 오전 내내 졸음이 쏟아져 집중하기 어려웠다.
+고민이 깊어질수록 해결책을 찾기 어려운 이유는 감정이 이성을 앞서기 때문일 때가 많다.
+오늘은 해야 할 일이 많아서 머릿속이 복잡했지만, 하나하나 해결할 때마다 긴장이 조금씩 풀리는 느낌이었다.
+문제를 해결하기 위해 여러 자료를 찾아보다가 의외의 논문에서 중요한 힌트를 발견했다.
+회의시간이 길어질수록 사람들의 집중력이 점점 떨어져 결국 논의가 산으로 가기 시작했다.
+요즘은 새로운 기술이 너무 빠르게 등장해서 잠깐만 관심을 놓아도 시대 흐름을 따라가기 어렵다.
+프로젝트 마감일이 다가오자 팀원들은 서로의 작업 진행 상황을 더욱 꼼꼼하게 점검하기 시작했다.
+긴 문서를 읽을 때는 한 문장을 여러 번 읽어야 정확한 의미를 파악할 수 있을 때가 많다.
+오늘은 예기치 못한 시스템 이상으로 인해 대부분의 작업이 지연되어 일정에 큰 차질이 생겼다.
+복잡한 문제를 단순화하려는 노력은 때로는 해결의 실마리를 제공하지만, 상황을 지나치게 단순화하면 오히려 위험하다.
+팀원들의 의견이 서로 달랐지만 충분한 토론 끝에 모두가 납득할 수 있는 합의점을 찾을 수 있었다.
+오전에는 집중이 잘 되지 않았지만 오후에 들어서면서 갑자기 흐름이 잡혀 빠르게 작업을 마칠 수 있었다.
+문서에 기록된 정보가 오래되어 신뢰하기 어려워서 원본 데이터를 다시 찾아 분석해야 했다.
+오늘은 일정이 많아 바쁘긴 했지만 오랜만에 의미 있는 이야기를 많이 나눌 수 있어 만족스러웠다.
+작은 실험에서 얻은 결과라도 반복적으로 검증해야 실제 환경에서도 적용할 수 있다.
+기술이 아무리 발전해도 사람 간의 협력이 부족하면 프로젝트는 제대로 굴러가기 어렵다.
+업무 효율을 높이기 위해 여러 도구를 사용해 보았지만 결국 중요한 건 꾸준함이라는 사실을 깨달았다.
+오늘은 기분이 복잡해 아무리 생각을 정리하려 해도 오히려 걱정만 더 늘어났다.
+대부분의 문제는 처음에는 단순해 보이지만 깊이 파고들수록 예상치 못한 요소들이 계속 나타난다.
+기획 단계에서 지나치게 완벽을 추구하면 실행 단계에서 유연하게 대응하기 어렵다.
+오늘은 평소보다 더 많은 이메일이 쏟아져 답장을 보내는 데만 한참이 걸렸다.
+계획했던 작업을 끝내지 못해 아쉬웠지만, 내일 더 나은 결과를 위해 오늘의 실패를 정리해 두었다.
+분석 자료가 너무 방대해 모든 내용을 한 번에 이해하기 어려워 여러 번 반복해서 읽어야 했다.
+주어진 시간 안에 완벽함을 추구하기보다는 가능한 범위에서 최선을 다하는 것이 현실적이다.
+팀 내 역할이 명확하지 않으면 작은 작업도 중복되거나 누락되기 쉽다.
+오늘은 중요한 결정을 내려야 하는 순간이 많아서 하루 종일 긴장한 상태였다.
+오랜 시간 고민했던 문제를 결국 해결했을 때 찾아오는 성취감은 그 어떤 보상보다 달콤하다.
+작은 변화라도 꾸준히 쌓이면 결국 큰 결과를 만들어낸다는 사실을 최근 들어 실감하고 있다.
+회의 내용을 다시 정리해 보니 처음에는 복잡해 보이던 쟁점들이 의외로 간단한 구조임을 알게 되었다.
+오늘은 협업 도구가 오류를 일으켜 전체 팀의 작업이 잠시 멈춰야 했다.
+업무 중에 갑자기 떠오른 아이디어를 메모해 두지 않으면 시간이 지나고 나서 기억나지 않는 경우가 많다.
+문제를 깊이 파고들수록 오히려 처음에 놓쳤던 간단한 해결책이 더 효과적이라는 것을 알게 된다.
+오늘은 날씨가 흐렸지만 이상하게 집중력은 평소보다 더 높았다.
+프로젝트가 막바지에 이를수록 작은 오류 하나도 전체 일정에 큰 영향을 줄 수 있다.
+의견 충돌이 있었지만 충분한 대화를 통해 오해를 풀고 더 나은 방향으로 나아갈 수 있었다.
+업무를 할 때는 속도도 중요하지만 그보다 중요한 것은 정확성이다.
+최근에는 새로운 기술이 너무 많아 무엇을 먼저 배워야 할지 고민될 때가 많다.
+잠시 쉬는 시간에 차 한 잔을 마시며 여유를 찾으려고 했지만 머릿속에서는 여전히 업무 생각이 떠나지 않았다.
+분석한 내용을 실제 프로젝트에 적용해 보니 처음 예상했던 것과는 다른 결과가 나타났다.
+오늘은 의도치 않게 일정이 계속 밀려 계획을 전면 수정해야 했다.
+문서를 정리하다 보니 빠진 내용이 있어 다시 처음부터 검토할 수밖에 없었다.
+새로운 기능을 추가하려면 기존 구조에 어떤 영향을 줄지 충분히 고려해야 한다.
+오늘은 집중력이 평소보다 높아 어려운 작업도 빠르게 처리할 수 있었다.
+기술 발전 속도가 너무 빨라 잠시만 쉬어도 따라잡기 어렵다는 사실이 부담스럽게 느껴졌다.
+프로젝트 마감 시간이 다가오자 모두가 자연스럽게 일처리 속도를 높이기 시작했다.
+문제를 해결하기 위해 찾아본 여러 자료가 서로 다른 결론을 내리고 있어 더 혼란스러웠다.
+오늘은 여러 가지 예외 상황이 발생해 매뉴얼에 없는 방식으로 문제를 해결해야 했다.
+팀원 한 명의 작은 실수가 전체 일정에 큰 영향을 주면서 작업 흐름을 다시 잡아야 했다.
+여러 아이디어를 시도해 본 끝에 결국 가장 단순한 방법이 가장 효과적이라는 결론을 얻었다.
+집중이 잘 되는 날에는 복잡한 문제도 의외로 쉽게 풀릴 때가 있다.
+오늘은 업무뿐 아니라 개인적인 고민까지 겹쳐 정신이 지칠 정도로 복잡한 하루였다.
+새로운 시도를 두려워하면 결국 아무 변화도 만들지 못한다는 생각이 들었다.
+완벽하게 보였던 계획도 실제로 실행해 보면 예상치 못한 문제가 생길 수 있다.
+오늘은 여러 업무가 한꺼번에 몰려 제대로 쉬지 못한 채 하루를 버틴 느낌이다.
+오늘은 예상보다 더 많은 문제가 동시에 발생해 업무 우선순위를 다시 조정하느라 시간이 오래 걸렸다.
+프로젝트 초반에는 가볍게 여겼던 오류가 시간이 지나면서 점점 더 큰 문제로 발전하는 경우가 있다.
+팀원 모두가 본인의 역할을 명확히 이해할 때 협업이 가장 효율적으로 이루어진다.
+새로운 기능을 구현하다 보니 기존 코드와 충돌하는 부분이 있어 구조 자체를 일부 수정해야 했다.
+오늘은 하루 종일 비가 내려 기분이 가라앉았지만 오히려 집중은 더 잘되었다.
+문서를 다시 읽어보니 처음에는 발견하지 못했던 오류와 모순점이 여러 곳에서 드러났다.
+갑작스러운 일정 변경으로 인해 준비하지 못한 발표를 즉석에서 해야 했지만 생각보다 잘 마무리했다.
+오늘은 기술적 문제보다 사람 간의 의견 차이 때문에 더 많은 시간이 소요되었다.
+작업을 하다 보면 계획대로 흘러가는 날보다 예기치 못한 변수가 더 많은 날이 많다.
+데이터를 시각화해 보니 숫자만 보고서는 알 수 없었던 패턴이 명확하게 드러났다.
+오늘은 팀 전체가 바쁜 탓인지 평소보다 말수가 적고 분위기가 다소 무거웠다.
+문제의 근본 원인을 찾지 못하면 같은 문제가 반복될 가능성이 높다.
+오늘은 집중이 잘 돼서 평소보다 두 배 정도의 일을 처리할 수 있었다.
+새로운 기능 테스트 중 사용자 경험을 해치는 요소들이 발견되어 우선순위를 높여 해결했다.
+일부 데이터가 손상되어 복구 작업을 진행해야 했는데, 예상보다 시간이 오래 걸렸다.
+회의에서 나온 여러 의견 중 어떤 것을 선택해야 할지 판단하기 어려웠다.
+새로운 알고리즘을 적용해 보니 기존 모델보다 성능이 크게 향상되었다.
+문서 정리 작업은 단순해 보이지만 생각보다 많은 집중력이 필요하다.
+작업 흐름이 중간에 끊기면 다시 집중하기까지 시간이 오래 걸린다.
+오늘은 예상보다 많은 업무를 처리했지만 정작 가장 중요한 작업은 시작조차 못했다.
+문제를 해결하려면 우선 전체 상황을 정확히 파악해야 한다.
+새로운 자료를 읽다 보니 그동안 잘못 이해하고 있던 부분이 있었다는 것을 깨달았다.
+오늘은 평소보다 에너지가 넘쳐 어려운 작업도 즐겁게 할 수 있었다.
+서로 다른 의견을 조율하는 과정은 힘들지만 프로젝트 완성도를 높이는 데 꼭 필요하다.
+오류 로그를 분석하면서 재현이 어려운 문제를 해결하는 데만 몇 시간이 걸렸다.
+어떤 문제는 직접 부딪혀 보지 않고는 이해할 수 없다는 사실을 다시 한번 느꼈다.
+오늘은 업무가 너무 많아 정신없이 지나갔지만 나름 보람 있는 하루였다.
+데이터를 정리하다 보니 의미 있는 인사이트가 자연스럽게 떠올랐다.
+계획을 세울 때는 세부 사항까지 꼼꼼히 챙겨야 실행 단계에서 혼란이 줄어든다.
+작업 효율을 높이기 위해 여러 도구를 도입해 보았지만 결국 가장 중요한 건 꾸준함이다.
+프로젝트가 뒤로 갈수록 전체적인 흐름을 잃지 않고 조율하는 일이 점점 더 중요해진다.
+주어진 정보를 그대로 받아들이지 않고 의문을 가지는 태도가 더 좋은 결과를 만든다.
+오늘은 여러 가지 예외 상황이 겹쳐 평소보다 많은 시간이 소요되었다.
+회의 준비를 철저히 했지만 정작 예상하지 못한 질문들이 쏟아져 당황했다.
+문제 해결 과정에서 협력의 중요성을 다시 느끼게 되었다.
+새로운 기능을 빠르게 구현하는 것도 좋지만 코드 품질을 유지하는 것이 더 중요하다.
+오늘은 데이터 정제 작업만 하다가 하루가 다 지나갔다.
+예상치 못한 외부 요인 때문에 업무 흐름이 크게 흔들렸다.
+작업 중에 작은 실수가 전체 시스템에 큰 영향을 미칠 수 있다는 사실이 두려웠다.
+오늘은 평소보다 부정적인 생각이 많이 들어 일을 시작하기 어려웠다.
+기술적 지식이 아무리 뛰어나도 협업 능력이 부족하면 프로젝트 전체가 흔들릴 수 있다.
+사용자의 실제 요구를 파악하지 못한 상태에서 기능을 구현하면 불필요한 작업이 늘어난다.
+오늘은 분위기가 어수선해서 업무에 집중하는 데 어려움이 있었다.
+분석 도구를 바꾸자 그동안 보이지 않던 패턴이 명확하게 확인되었다.
+작업을 시작하기 전에 전체 구조를 충분히 이해하는 것이 장기적으로 시간을 절약해 준다.
+오늘은 갑작스럽게 새로운 업무가 추가되어 계획이 뒤흔들렸다.
+프로젝트가 커질수록 커뮤니케이션의 중요성은 더 크게 느껴진다.
+팀 전체가 목표를 명확히 공유하지 않으면 작업의 방향성이 흐려질 수 있다.
+새로운 라이브러리를 적용해 보았지만 기존 환경과 호환되지 않아 많은 수정이 필요했다.
+오늘은 이전에 해결하지 못했던 문제의 원인을 드디어 파악할 수 있었다.
+문장을 정리하다 보니 부족했던 부분이 자연스럽게 눈에 들어왔다.
+작업 속도를 무리하게 높이려고 하면 오히려 실수가 늘어나는 경우가 많다.
+오늘은 평소보다 컨디션이 좋아 어려운 작업도 수월하게 느껴졌다.
+오늘은 아침부터 예기치 못한 일정 변경이 생겨 계획했던 일을 제대로 시작하지도 못했지만, 오후가 되자 상황이 조금 안정되면서 늦게나마 중요한 결정을 내릴 수 있었다.
+프로젝트 요구사항을 다시 검토해 보니 처음에는 단순해 보였던 조건들이 실제로 구현하려면 훨씬 많은 예외 처리를 필요로 한다는 사실을 깨닫게 되었다.
+여러 자료를 비교 분석하다 보니 데이터 출처마다 기준이 달라 결과에 왜곡이 생길 수 있어 이를 조정하는 데만 예상보다 많은 시간이 소요되었다.
+오늘은 팀원들의 의견이 너무 다양하게 갈려 합의를 이루기 어려웠지만, 충분한 대화를 통해 결국 모두가 납득할 수 있는 방향을 찾았다.
+새로운 기능을 테스트하면서 몇 가지 치명적인 오류를 발견했는데, 이를 수정하는 과정에서 기존 설계 자체를 일부 변경할 수밖에 없다는 결론에 이르렀다.
+오랜 시간 고민했던 문제가 사실은 아주 단순한 실수에서 시작된 것임을 알게 되었을 때 허무함과 안도감이 동시에 밀려왔다.
+오늘은 집중력이 유독 낮아 작은 작업 하나에도 시간이 오래 걸렸지만, 오후 늦게 잠깐의 휴식을 취하고 나서야 어느 정도 흐름을 되찾을 수 있었다.
+변수 하나만 잘못 설정되어도 전체 모델이 엉뚱한 방향으로 학습된다는 사실을 다시 한번 체감하며 검증 절차의 중요성을 절실히 느꼈다.
+오늘은 여러 작업을 동시에 처리하다 보니 머릿속이 복잡해졌고, 결국 주요 결정을 미루고 내일 다시 검토하기로 했다.
+데이터 전처리 단계에서 누락된 항목이 발견되어 처음부터 다시 작업해야 했는데, 예상보다 규모가 커서 다른 일정까지 모두 밀려버렸다.
+기술적 문제를 해결하면서 동시에 팀원 간 의사소통 방식도 개선해야 한다는 생각이 들었고, 이를 정리해 문서화해 두기로 했다.
+오늘은 그동안 미뤄두었던 문서 작업을 마침내 완료했지만, 끝내고 보니 추가로 수정해야 할 부분이 계속 떠올라 쉽게 자리를 떠나지 못했다.
+작업 중 우연히 발견한 작은 오류가 나중에 큰 문제를 막는 계기가 되었고, 덕분에 전체 구조를 더 안정적으로 다듬을 수 있었다.
+오늘은 갑작스러운 요청으로 인해 업무 흐름이 끊겨 당황했지만, 빠르게 상황을 파악하고 우선순위를 조정해 나름 무사히 마무리했다.
+여러 아이디어를 실험해 본 끝에 가장 단순한 방식이 결국 가장 안정적이라는 결론을 다시 한번 확인했다.
+오늘은 컨디션이 좋지 않아 일을 미루고 싶었지만, 마감 일정이 다가오고 있어 작은 작업이라도 차근히 진행할 수밖에 없었다.
+문제의 원인을 찾지 못한 채 계속 해결만 시도하다 보니 오히려 더 큰 혼란이 생겼고, 결국 전체 구조를 처음부터 다시 살펴보는 것으로 방향을 바꾸었다.
+오늘은 팀 회의가 예정보다 오래 이어졌지만 그 과정에서 중요한 논의가 이루어져 향후 작업에 큰 도움이 되었다.
+데이터가 지나치게 불균형해 모델 성능이 떨어지고 있어 이를 해결하기 위한 다양한 방법을 검토해야 했다.
+오늘은 업무가 많아 정신없이 지나갔지만, 저녁 무렵에야 하루 동안 얻은 인사이트들을 천천히 기록하며 다시 마음을 정리할 수 있었다.
+프로젝트 진행 상황을 점검하다 보니 사소해 보였던 요소들이 의외로 중요한 역할을 하고 있어 우선순위를 조정해야 했다.
+오늘은 작은 실험에서 유의미한 결과를 얻어 기뻤지만, 반복 검증 과정에서 예외적인 사례가 다수 발생해 결론을 쉽게 내릴 수 없었다.
+문서 작성 중 표현이 모호해 오해를 불러일으킬 수 있는 부분을 발견해 여러 번 수정했지만 여전히 만족스럽지 않아 시간이 오래 걸렸다.
+오늘은 여러 변수들이 한꺼번에 발생해 혼란스러웠지만, 가장 중요한 문제부터 차근히 해결하며 상황을 안정시킬 수 있었다.
+복잡한 문제를 해결하려다 보니 어느 순간 본질적인 질문에서 벗어나 있다는 사실을 깨닫고 다시 핵심으로 돌아갈 필요가 있었다.
+오늘은 새로운 정보를 많이 접해 머리가 복잡했지만 그만큼 성장하고 있다는 느낌이 들어 뿌듯했다.
+데이터 분석 결과가 처음 예상과 너무 달라 혼란스러웠지만, 추가 검증을 통해 오히려 더 깊은 이해를 얻게 되었다.
+오늘은 집중력이 들쑥날쑥해 작업 속도가 일정하지 않았지만 꾸준히 이어간 덕분에 계획한 목표는 대부분 달성했다.
+프로젝트 관련 회의를 하면서 서로의 관점을 공유하는 과정에서 생각하지 못했던 문제와 해결책이 동시에 보였다.
+오늘은 작은 요소 하나가 전체 시스템에 어떤 영향을 주는지 몸소 깨닫는 날이었다.
+작업 중 너무 많은 생각이 머릿속을 스쳐 지나가 집중하기 어려웠지만, 하나씩 정리해 나가자 흐름이 조금씩 잡히기 시작했다.
+오늘은 큰 문제는 없었지만 사소한 오류들이 계속 발견되어 그때그때 수정해야 했다.
+프로젝트 전체 구조를 다시 내려다보니 지나치게 복잡한 부분이 있어 이를 단순화할 방법을 고민해야 했다.
+오늘은 다양한 업무 요청이 한꺼번에 몰려 정신없었지만, 우선순위를 명확히 정해 효율적으로 처리할 수 있었다.
+기술적인 어려움뿐 아니라 팀 내 조율 문제까지 겹쳐 하루가 더 힘들게 느껴졌다.
+오늘은 작은 실험을 반복하는 과정에서 의외의 결과를 발견해 작업 방향을 일부 조정하게 되었다.
+문제를 깊게 파고들수록 기본 개념을 더 탄탄히 해야 한다는 사실을 다시 한번 깨달았다.
+오늘은 여러 가지 일을 병행하다 보니 시간 감각을 잃을 정도로 정신없이 지나갔다.
+프로젝트 중간 점검을 해보니 예상보다 진도가 느려 계획을 조정해야 했다.
+오늘은 갑작스러운 외부 이슈로 인해 중요한 업무를 뒤로 미뤄야 했다.
+작업이 예상대로 진행되지 않아 답답했지만 문제를 해결하는 과정에서 새로운 배움을 얻었다.
+오늘은 복잡한 계산을 여러 번 검증하느라 시간이 오래 걸렸지만 그 과정이 프로젝트 안정성에 큰 도움이 되었다.
+협업 과정에서 오해가 생겨 잠시 분위기가 어색해졌지만 솔직한 대화를 통해 금방 해결할 수 있었다.
+오늘은 처음 기대했던 것만큼 많은 일을 하지는 못했지만 중요한 문제 하나를 해결했다는 점에서 만족스러웠다.
+기술적인 해결책이 아무리 훌륭해도 문제의 본질을 잘못 이해하면 아무 소용 없다는 사실을 깨달았다.
+오늘은 예기치 못한 일정이 생겨 바쁜 하루였지만 돌이켜보면 의미 있는 시간이기도 했다.
+프로젝트 후반으로 갈수록 작은 변수 하나도 전체 일정에 큰 영향을 주므로 더욱 신중히 처리해야 한다.
+오늘은 집중력이 좋아 작업 효율이 높았지만 장시간 몰두한 탓에 피로가 쌓였다.
+문서를 검토하다 보니 누락된 항목이 있어 다시 처음부터 정리해야 했다.
+오늘은 기존 구조를 개편하는 작업을 진행했는데, 예상보다 손볼 곳이 많아 시간이 부족했다.
+팀원들의 의견을 조율하며 더 나은 방향으로 프로젝트를 발전시킬 수 있었다.
+오늘은 하루 종일 회의가 이어져 지쳤지만 그 과정에서 프로젝트의 핵심 문제를 명확히 파악할 수 있었다.
+작업 흐름을 유지하기 위해 중간중간 짧은 휴식을 취했지만 여전히 피로가 쉽게 가시지 않았다.
+오늘은 새로운 분석 도구를 사용해 보았는데, 익숙해지는 데 시간이 걸렸지만 결과는 만족스러웠다.
+복잡한 문제를 해결하려면 단순함 속에서도 본질을 찾아야 한다는 사실을 다시 깨달았다.
+오늘은 업무가 많아 정신없이 지나갔지만 작은 진전 하나가 큰 동기부여가 되었다.
+데이터 처리 과정에서 비효율적인 부분을 발견해 전체 흐름을 개선할 아이디어가 떠올랐다.
+오늘은 여러 예외 상황이 겹쳐 평소보다 많은 스트레스를 받았지만, 하루가 끝날 무렵에는 어느 정도 정리할 수 있었다.
+작업 중 단순한 실수 하나가 전체 구조에 영향을 미칠 뻔해 긴장했지만 다행히 빠르게 수정할 수 있었다.
+오늘은 새로운 기능 개발을 위해 여러 옵션을 실험해 보았고 그 과정에서 더 효율적인 방향을 찾았다.
+회의를 거듭하면서 프로젝트 목표가 더 명확해졌고 다음 단계로 넘어갈 준비가 되었다.
+오늘은 예상보다 시간이 오래 걸렸지만 결국 중요한 문제를 해결해 큰 성취감을 느꼈다.
+분석한 데이터를 다시 검토하니 처음 보지 못했던 패턴이 보이면서 작업 방향을 변경해야 했다.
+오늘은 기술적 문제뿐 아니라 의사소통에서도 어려움이 있었지만 차분히 정리해 해결할 수 있었다.
+작업 중간에 새로운 아이디어가 떠올라 기존 계획을 일부 수정하게 되었다.
+오늘은 여러 자료를 참고하여 복잡한 내용을 정리했는데, 시간이 오래 걸렸지만 그만큼 이해도가 높아졌다.
+프로젝트가 점점 복잡해지면서 세부 관리의 중요성이 커지고 있어 더욱 주의를 기울여야 한다.
+오늘 아침은 평소와 다르게 유난히 조용했지만, 마음속에서는 해결해야 할 일들이 계속 흘러넘쳐 집중하기 어려웠다.
+작은 회의라도 준비하려면 생각보다 정리해야 할 정보가 많아서 미리 시작하지 않으면 마감일에 쫓기기 쉽다.
+데이터 분석을 하다 보면 예상치 못한 결측치나 오류가 발견되기 마련이라, 이를 대비한 예외 처리 로직을 반드시 넣어야 한다.
+기획안을 작성하면서 가장 어려웠던 부분은 다양한 이해관계자들의 요구사항을 하나의 흐름으로 묶는 일이었다.
+보고서를 제출한 뒤에도 혹시 빠진 내용이 있을까 걱정되어 다시 한번 전체 문서를 꼼꼼하게 확인했다.
+업무 속도가 느린 날에는 잡다한 잡음들이 신경을 거슬리게 하여 작은 일에도 크게 집중력이 흔들린다.
+새로운 프로젝트가 시작되면 설렘도 있지만 동시에 실패에 대한 두려움도 함께 따라오기 마련이다.
+오늘 받은 이메일 중 일부는 중요한 내용이었지만, 바쁜 일정 때문에 답장을 미루다 보니 계속 쌓여 스트레스로 이어졌다.
+변화가 빠른 환경 속에서는 기존의 방식만 고집하면 금세 도태될 수 있기 때문에, 끊임없는 학습과 적응이 필요하다.
+회의 시간에 갑자기 변경된 요구사항 때문에 전체 일정이 뒤엉켜 다시 계획을 세울 수밖에 없었다.
+모델의 성능이 기대보다 낮게 나오는 이유를 찾기 위해 여러 하이퍼파라미터를 조정하며 수십 번의 실험을 반복했다.
+최근 발표된 기술 동향 보고서를 읽어보니 인공지능 산업 전반이 다시 급속도로 성장하고 있다는 사실을 확인할 수 있었다.
+어제 밤늦게까지 코드 디버깅을 하다 보니 오늘 아침에는 머리가 무겁고 작은 작업에도 오래 걸렸다.
+팀 내부의 의사소통은 원활해 보였지만 실제 구현 단계에서는 서로의 이해 차이로 인해 여러 충돌이 발생했다.
+학습 데이터가 충분하지 않으면 어떤 알고리즘을 사용하더라도 안정적인 결과를 기대하기 어렵다.
+오늘은 미뤄왔던 일들을 한꺼번에 처리하느라 정신없이 바빴지만, 끝내고 나니 묘한 성취감이 느껴졌다.
+규칙적인 생활이 중요하다는 것을 알면서도 요즘같이 일정이 불규칙할 땐 지키기 어려워 자꾸 피로가 쌓인다.
+예상보다 많은 양의 데이터를 검토해야 해서 처음 계획했던 업무 시간이 크게 늦어졌다.
+복잡한 문제일수록 단순한 해결책을 먼저 떠올려 보라는 선배의 조언이 오늘따라 더 크게 와닿았다.
+일이 많을 때일수록 우선순위를 명확히 정해두지 않으면, 결국 해야 할 일을 제대로 끝내지 못하고 하루가 지나간다.
+데이터셋이 커질수록 전처리에 걸리는 시간이 기하급수적으로 증가하므로 효율적인 파이프라인 구축이 필수적이다.
+오늘 회의에서는 여러 의견이 오갔지만 핵심 쟁점에 대한 명확한 결론은 내지 못하고 다음 회의로 넘어가게 되었다.
+새로운 기술을 도입하는 데 있어서 가장 중요한 것은 팀 전체가 이를 충분히 이해하고 합의하는 과정이다.
+예측 모델이 실제 데이터와 다르게 동작하는 이유를 찾는 과정은 때로는 퍼즐을 푸는 것처럼 흥미롭기도 하다.
+조용한 환경에 익숙해져 있다가 갑작스럽게 시끄러운 장소에서 일하려니 집중력이 크게 떨어졌다.
+며칠 동안 계속된 야근 때문에 몸이 무거웠지만 정작 침대에 누우면 잠이 쉽게 오지 않아 더욱 피로가 쌓였다.
+오늘은 평소보다 미팅이 많아서 정작 내가 해야 할 본업은 거의 손도 대지 못했다.
+학습한 내용을 실제 상황에 적용하려면 단순한 이론 이해를 넘어서 다양한 사례를 경험하는 것이 중요하다.
+기술 문서를 읽을 때는 단순히 내용을 받아들이기보다 왜 그렇게 설계했는지 의도를 파악하는 것이 더 도움이 된다.
+작은 실수 하나가 전체 시스템 오류로 이어질 수 있기 때문에, 테스트 단계에서는 항상 꼼꼼함을 유지해야 한다.
+문제를 해결하는 과정에서 예상치 못한 장애물이 나타나면 계획을 유연하게 변경해야 한다는 것을 다시 느꼈다.
+오늘은 팀원 모두가 피곤해 보였지만 서로를 격려하며 끝까지 프로젝트를 진행하려는 분위기였다.
+기분이 우울한 날에는 아무리 쉬운 작업이라도 시작하기가 어렵고, 집중력도 평소보다 훨씬 낮아진다.
+인터넷 연결이 불안정해서 작업 흐름이 자꾸 끊기자 작은 문제도 크게 느껴졌다.
+오늘 발표를 위해 준비한 내용들은 대부분 예상 질문과 잘 맞아 무난하게 진행할 수 있었다.
+중요한 발표가 끝난 후 찾아오는 해방감은 말로 표현하기 어려울 정도로 짜릿하다.
+계획이 아무리 완벽해 보여도 예상하지 못한 변수가 등장하면 언제든 모든 것이 뒤집힐 수 있다.
+오늘 회식에서는 업무 이야기가 아닌 서로의 개인적인 이야기를 나누며 관계가 조금 더 가까워진 느낌이다.
+기획 단계에서 항상 고려해야 하는 것은 사용자 입장에서 실제로 어떤 경험을 하게 될지이다.
+처음에는 단순해 보였던 문제도 깊이 분석하다 보면 예상보다 훨씬 복잡한 구조로 얽혀 있음을 깨닫게 된다.
+감정이 복잡하게 얽혀 있을 때는 누군가에게 털어놓기 어려워 혼자 끙끙 앓게 되는 경우가 많다.
+오늘은 정신없이 바빴지만 일이 잘 풀려 오랜만에 만족스러운 하루였다.
+데이터베이스 최적화 작업은 작은 설정 하나로도 전체 성능이 크게 좌우되기 때문에 신중하게 접근해야 한다.
+회의록을 정리하면서 다시 내용을 읽어보니 처음 들을 때보다 더 많은 부분이 이해되었다.
+오늘 날씨는 흐렸지만 오히려 그런 분위기 덕분에 차분하게 업무를 처리할 수 있었다.
+모델의 학습률을 조금만 잘못 설정해도 결과가 완전히 달라지기 때문에 세심한 튜닝이 필요하다.
+실수를 두려워하면 새로운 시도를 하지 못하게 되고 결국 성장의 기회를 놓칠 수 있다.
+오늘 작성한 코드는 기능적으로는 문제 없지만 가독성을 더 높일 필요가 있다는 피드백을 받았다.
+평소보다 일찍 일어났음에도 불구하고 오전 내내 졸음이 쏟아져 집중하기 어려웠다.
+고민이 깊어질수록 해결책을 찾기 어려운 이유는 감정이 이성을 앞서기 때문일 때가 많다.
+오늘은 해야 할 일이 많아서 머릿속이 복잡했지만, 하나하나 해결할 때마다 긴장이 조금씩 풀리는 느낌이었다.
+문제를 해결하기 위해 여러 자료를 찾아보다가 의외의 논문에서 중요한 힌트를 발견했다.
+회의시간이 길어질수록 사람들의 집중력이 점점 떨어져 결국 논의가 산으로 가기 시작했다.
+요즘은 새로운 기술이 너무 빠르게 등장해서 잠깐만 관심을 놓아도 시대 흐름을 따라가기 어렵다.
+프로젝트 마감일이 다가오자 팀원들은 서로의 작업 진행 상황을 더욱 꼼꼼하게 점검하기 시작했다.
+긴 문서를 읽을 때는 한 문장을 여러 번 읽어야 정확한 의미를 파악할 수 있을 때가 많다.
+오늘은 예기치 못한 시스템 이상으로 인해 대부분의 작업이 지연되어 일정에 큰 차질이 생겼다.
+복잡한 문제를 단순화하려는 노력은 때로는 해결의 실마리를 제공하지만, 상황을 지나치게 단순화하면 오히려 위험하다.
+팀원들의 의견이 서로 달랐지만 충분한 토론 끝에 모두가 납득할 수 있는 합의점을 찾을 수 있었다.
+오전에는 집중이 잘 되지 않았지만 오후에 들어서면서 갑자기 흐름이 잡혀 빠르게 작업을 마칠 수 있었다.
+문서에 기록된 정보가 오래되어 신뢰하기 어려워서 원본 데이터를 다시 찾아 분석해야 했다.
+오늘은 일정이 많아 바쁘긴 했지만 오랜만에 의미 있는 이야기를 많이 나눌 수 있어 만족스러웠다.
+작은 실험에서 얻은 결과라도 반복적으로 검증해야 실제 환경에서도 적용할 수 있다.
+기술이 아무리 발전해도 사람 간의 협력이 부족하면 프로젝트는 제대로 굴러가기 어렵다.
+업무 효율을 높이기 위해 여러 도구를 사용해 보았지만 결국 중요한 건 꾸준함이라는 사실을 깨달았다.
+오늘은 기분이 복잡해 아무리 생각을 정리하려 해도 오히려 걱정만 더 늘어났다.
+대부분의 문제는 처음에는 단순해 보이지만 깊이 파고들수록 예상치 못한 요소들이 계속 나타난다.
+기획 단계에서 지나치게 완벽을 추구하면 실행 단계에서 유연하게 대응하기 어렵다.
+오늘은 평소보다 더 많은 이메일이 쏟아져 답장을 보내는 데만 한참이 걸렸다.
+계획했던 작업을 끝내지 못해 아쉬웠지만, 내일 더 나은 결과를 위해 오늘의 실패를 정리해 두었다.
+분석 자료가 너무 방대해 모든 내용을 한 번에 이해하기 어려워 여러 번 반복해서 읽어야 했다.
+주어진 시간 안에 완벽함을 추구하기보다는 가능한 범위에서 최선을 다하는 것이 현실적이다.
+팀 내 역할이 명확하지 않으면 작은 작업도 중복되거나 누락되기 쉽다.
+오늘은 중요한 결정을 내려야 하는 순간이 많아서 하루 종일 긴장한 상태였다.
+오랜 시간 고민했던 문제를 결국 해결했을 때 찾아오는 성취감은 그 어떤 보상보다 달콤하다.
+작은 변화라도 꾸준히 쌓이면 결국 큰 결과를 만들어낸다는 사실을 최근 들어 실감하고 있다.
+회의 내용을 다시 정리해 보니 처음에는 복잡해 보이던 쟁점들이 의외로 간단한 구조임을 알게 되었다.
+오늘은 협업 도구가 오류를 일으켜 전체 팀의 작업이 잠시 멈춰야 했다.
+업무 중에 갑자기 떠오른 아이디어를 메모해 두지 않으면 시간이 지나고 나서 기억나지 않는 경우가 많다.
+문제를 깊이 파고들수록 오히려 처음에 놓쳤던 간단한 해결책이 더 효과적이라는 것을 알게 된다.
+오늘은 날씨가 흐렸지만 이상하게 집중력은 평소보다 더 높았다.
+프로젝트가 막바지에 이를수록 작은 오류 하나도 전체 일정에 큰 영향을 줄 수 있다.
+의견 충돌이 있었지만 충분한 대화를 통해 오해를 풀고 더 나은 방향으로 나아갈 수 있었다.
+업무를 할 때는 속도도 중요하지만 그보다 중요한 것은 정확성이다.
+최근에는 새로운 기술이 너무 많아 무엇을 먼저 배워야 할지 고민될 때가 많다.
+잠시 쉬는 시간에 차 한 잔을 마시며 여유를 찾으려고 했지만 머릿속에서는 여전히 업무 생각이 떠나지 않았다.
+분석한 내용을 실제 프로젝트에 적용해 보니 처음 예상했던 것과는 다른 결과가 나타났다.
+오늘은 의도치 않게 일정이 계속 밀려 계획을 전면 수정해야 했다.
+문서를 정리하다 보니 빠진 내용이 있어 다시 처음부터 검토할 수밖에 없었다.
+새로운 기능을 추가하려면 기존 구조에 어떤 영향을 줄지 충분히 고려해야 한다.
+오늘은 집중력이 평소보다 높아 어려운 작업도 빠르게 처리할 수 있었다.
+기술 발전 속도가 너무 빨라 잠시만 쉬어도 따라잡기 어렵다는 사실이 부담스럽게 느껴졌다.
+프로젝트 마감 시간이 다가오자 모두가 자연스럽게 일처리 속도를 높이기 시작했다.
+문제를 해결하기 위해 찾아본 여러 자료가 서로 다른 결론을 내리고 있어 더 혼란스러웠다.
+오늘은 여러 가지 예외 상황이 발생해 매뉴얼에 없는 방식으로 문제를 해결해야 했다.
+팀원 한 명의 작은 실수가 전체 일정에 큰 영향을 주면서 작업 흐름을 다시 잡아야 했다.
+여러 아이디어를 시도해 본 끝에 결국 가장 단순한 방법이 가장 효과적이라는 결론을 얻었다.
+집중이 잘 되는 날에는 복잡한 문제도 의외로 쉽게 풀릴 때가 있다.
+오늘은 업무뿐 아니라 개인적인 고민까지 겹쳐 정신이 지칠 정도로 복잡한 하루였다.
+새로운 시도를 두려워하면 결국 아무 변화도 만들지 못한다는 생각이 들었다.
+완벽하게 보였던 계획도 실제로 실행해 보면 예상치 못한 문제가 생길 수 있다.
+오늘은 여러 업무가 한꺼번에 몰려 제대로 쉬지 못한 채 하루를 버틴 느낌이다.
+오늘은 예상보다 더 많은 문제가 동시에 발생해 업무 우선순위를 다시 조정하느라 시간이 오래 걸렸다.
+프로젝트 초반에는 가볍게 여겼던 오류가 시간이 지나면서 점점 더 큰 문제로 발전하는 경우가 있다.
+팀원 모두가 본인의 역할을 명확히 이해할 때 협업이 가장 효율적으로 이루어진다.
+새로운 기능을 구현하다 보니 기존 코드와 충돌하는 부분이 있어 구조 자체를 일부 수정해야 했다.
+오늘은 하루 종일 비가 내려 기분이 가라앉았지만 오히려 집중은 더 잘되었다.
+문서를 다시 읽어보니 처음에는 발견하지 못했던 오류와 모순점이 여러 곳에서 드러났다.
+갑작스러운 일정 변경으로 인해 준비하지 못한 발표를 즉석에서 해야 했지만 생각보다 잘 마무리했다.
+오늘은 기술적 문제보다 사람 간의 의견 차이 때문에 더 많은 시간이 소요되었다.
+작업을 하다 보면 계획대로 흘러가는 날보다 예기치 못한 변수가 더 많은 날이 많다.
+데이터를 시각화해 보니 숫자만 보고서는 알 수 없었던 패턴이 명확하게 드러났다.
+오늘은 팀 전체가 바쁜 탓인지 평소보다 말수가 적고 분위기가 다소 무거웠다.
+문제의 근본 원인을 찾지 못하면 같은 문제가 반복될 가능성이 높다.
+오늘은 집중이 잘 돼서 평소보다 두 배 정도의 일을 처리할 수 있었다.
+새로운 기능 테스트 중 사용자 경험을 해치는 요소들이 발견되어 우선순위를 높여 해결했다.
+일부 데이터가 손상되어 복구 작업을 진행해야 했는데, 예상보다 시간이 오래 걸렸다.
+회의에서 나온 여러 의견 중 어떤 것을 선택해야 할지 판단하기 어려웠다.
+새로운 알고리즘을 적용해 보니 기존 모델보다 성능이 크게 향상되었다.
+문서 정리 작업은 단순해 보이지만 생각보다 많은 집중력이 필요하다.
+작업 흐름이 중간에 끊기면 다시 집중하기까지 시간이 오래 걸린다.
+오늘은 예상보다 많은 업무를 처리했지만 정작 가장 중요한 작업은 시작조차 못했다.
+문제를 해결하려면 우선 전체 상황을 정확히 파악해야 한다.
+새로운 자료를 읽다 보니 그동안 잘못 이해하고 있던 부분이 있었다는 것을 깨달았다.
+오늘은 평소보다 에너지가 넘쳐 어려운 작업도 즐겁게 할 수 있었다.
+서로 다른 의견을 조율하는 과정은 힘들지만 프로젝트 완성도를 높이는 데 꼭 필요하다.
+오류 로그를 분석하면서 재현이 어려운 문제를 해결하는 데만 몇 시간이 걸렸다.
+어떤 문제는 직접 부딪혀 보지 않고는 이해할 수 없다는 사실을 다시 한번 느꼈다.
+오늘은 업무가 너무 많아 정신없이 지나갔지만 나름 보람 있는 하루였다.
+데이터를 정리하다 보니 의미 있는 인사이트가 자연스럽게 떠올랐다.
+계획을 세울 때는 세부 사항까지 꼼꼼히 챙겨야 실행 단계에서 혼란이 줄어든다.
+작업 효율을 높이기 위해 여러 도구를 도입해 보았지만 결국 가장 중요한 건 꾸준함이다.
+프로젝트가 뒤로 갈수록 전체적인 흐름을 잃지 않고 조율하는 일이 점점 더 중요해진다.
+주어진 정보를 그대로 받아들이지 않고 의문을 가지는 태도가 더 좋은 결과를 만든다.
+오늘은 여러 가지 예외 상황이 겹쳐 평소보다 많은 시간이 소요되었다.
+회의 준비를 철저히 했지만 정작 예상하지 못한 질문들이 쏟아져 당황했다.
+문제 해결 과정에서 협력의 중요성을 다시 느끼게 되었다.
+새로운 기능을 빠르게 구현하는 것도 좋지만 코드 품질을 유지하는 것이 더 중요하다.
+오늘은 데이터 정제 작업만 하다가 하루가 다 지나갔다.
+예상치 못한 외부 요인 때문에 업무 흐름이 크게 흔들렸다.
+작업 중에 작은 실수가 전체 시스템에 큰 영향을 미칠 수 있다는 사실이 두려웠다.
+오늘은 평소보다 부정적인 생각이 많이 들어 일을 시작하기 어려웠다.
+기술적 지식이 아무리 뛰어나도 협업 능력이 부족하면 프로젝트 전체가 흔들릴 수 있다.
+사용자의 실제 요구를 파악하지 못한 상태에서 기능을 구현하면 불필요한 작업이 늘어난다.
+오늘은 분위기가 어수선해서 업무에 집중하는 데 어려움이 있었다.
+분석 도구를 바꾸자 그동안 보이지 않던 패턴이 명확하게 확인되었다.
+작업을 시작하기 전에 전체 구조를 충분히 이해하는 것이 장기적으로 시간을 절약해 준다.
+오늘은 갑작스럽게 새로운 업무가 추가되어 계획이 뒤흔들렸다.
+프로젝트가 커질수록 커뮤니케이션의 중요성은 더 크게 느껴진다.
+팀 전체가 목표를 명확히 공유하지 않으면 작업의 방향성이 흐려질 수 있다.
+새로운 라이브러리를 적용해 보았지만 기존 환경과 호환되지 않아 많은 수정이 필요했다.
+오늘은 이전에 해결하지 못했던 문제의 원인을 드디어 파악할 수 있었다.
+문장을 정리하다 보니 부족했던 부분이 자연스럽게 눈에 들어왔다.
+작업 속도를 무리하게 높이려고 하면 오히려 실수가 늘어나는 경우가 많다.
+오늘은 평소보다 컨디션이 좋아 어려운 작업도 수월하게 느껴졌다.
+오늘은 아침부터 예기치 못한 일정 변경이 생겨 계획했던 일을 제대로 시작하지도 못했지만, 오후가 되자 상황이 조금 안정되면서 늦게나마 중요한 결정을 내릴 수 있었다.
+프로젝트 요구사항을 다시 검토해 보니 처음에는 단순해 보였던 조건들이 실제로 구현하려면 훨씬 많은 예외 처리를 필요로 한다는 사실을 깨닫게 되었다.
+여러 자료를 비교 분석하다 보니 데이터 출처마다 기준이 달라 결과에 왜곡이 생길 수 있어 이를 조정하는 데만 예상보다 많은 시간이 소요되었다.
+오늘은 팀원들의 의견이 너무 다양하게 갈려 합의를 이루기 어려웠지만, 충분한 대화를 통해 결국 모두가 납득할 수 있는 방향을 찾았다.
+새로운 기능을 테스트하면서 몇 가지 치명적인 오류를 발견했는데, 이를 수정하는 과정에서 기존 설계 자체를 일부 변경할 수밖에 없다는 결론에 이르렀다.
+오랜 시간 고민했던 문제가 사실은 아주 단순한 실수에서 시작된 것임을 알게 되었을 때 허무함과 안도감이 동시에 밀려왔다.
+오늘은 집중력이 유독 낮아 작은 작업 하나에도 시간이 오래 걸렸지만, 오후 늦게 잠깐의 휴식을 취하고 나서야 어느 정도 흐름을 되찾을 수 있었다.
+변수 하나만 잘못 설정되어도 전체 모델이 엉뚱한 방향으로 학습된다는 사실을 다시 한번 체감하며 검증 절차의 중요성을 절실히 느꼈다.
+오늘은 여러 작업을 동시에 처리하다 보니 머릿속이 복잡해졌고, 결국 주요 결정을 미루고 내일 다시 검토하기로 했다.
+데이터 전처리 단계에서 누락된 항목이 발견되어 처음부터 다시 작업해야 했는데, 예상보다 규모가 커서 다른 일정까지 모두 밀려버렸다.
+기술적 문제를 해결하면서 동시에 팀원 간 의사소통 방식도 개선해야 한다는 생각이 들었고, 이를 정리해 문서화해 두기로 했다.
+오늘은 그동안 미뤄두었던 문서 작업을 마침내 완료했지만, 끝내고 보니 추가로 수정해야 할 부분이 계속 떠올라 쉽게 자리를 떠나지 못했다.
+작업 중 우연히 발견한 작은 오류가 나중에 큰 문제를 막는 계기가 되었고, 덕분에 전체 구조를 더 안정적으로 다듬을 수 있었다.
+오늘은 갑작스러운 요청으로 인해 업무 흐름이 끊겨 당황했지만, 빠르게 상황을 파악하고 우선순위를 조정해 나름 무사히 마무리했다.
+여러 아이디어를 실험해 본 끝에 가장 단순한 방식이 결국 가장 안정적이라는 결론을 다시 한번 확인했다.
+오늘은 컨디션이 좋지 않아 일을 미루고 싶었지만, 마감 일정이 다가오고 있어 작은 작업이라도 차근히 진행할 수밖에 없었다.
+문제의 원인을 찾지 못한 채 계속 해결만 시도하다 보니 오히려 더 큰 혼란이 생겼고, 결국 전체 구조를 처음부터 다시 살펴보는 것으로 방향을 바꾸었다.
+오늘은 팀 회의가 예정보다 오래 이어졌지만 그 과정에서 중요한 논의가 이루어져 향후 작업에 큰 도움이 되었다.
+데이터가 지나치게 불균형해 모델 성능이 떨어지고 있어 이를 해결하기 위한 다양한 방법을 검토해야 했다.
+오늘은 업무가 많아 정신없이 지나갔지만, 저녁 무렵에야 하루 동안 얻은 인사이트들을 천천히 기록하며 다시 마음을 정리할 수 있었다.
+프로젝트 진행 상황을 점검하다 보니 사소해 보였던 요소들이 의외로 중요한 역할을 하고 있어 우선순위를 조정해야 했다.
+오늘은 작은 실험에서 유의미한 결과를 얻어 기뻤지만, 반복 검증 과정에서 예외적인 사례가 다수 발생해 결론을 쉽게 내릴 수 없었다.
+문서 작성 중 표현이 모호해 오해를 불러일으킬 수 있는 부분을 발견해 여러 번 수정했지만 여전히 만족스럽지 않아 시간이 오래 걸렸다.
+오늘은 여러 변수들이 한꺼번에 발생해 혼란스러웠지만, 가장 중요한 문제부터 차근히 해결하며 상황을 안정시킬 수 있었다.
+복잡한 문제를 해결하려다 보니 어느 순간 본질적인 질문에서 벗어나 있다는 사실을 깨닫고 다시 핵심으로 돌아갈 필요가 있었다.
+오늘은 새로운 정보를 많이 접해 머리가 복잡했지만 그만큼 성장하고 있다는 느낌이 들어 뿌듯했다.
+데이터 분석 결과가 처음 예상과 너무 달라 혼란스러웠지만, 추가 검증을 통해 오히려 더 깊은 이해를 얻게 되었다.
+오늘은 집중력이 들쑥날쑥해 작업 속도가 일정하지 않았지만 꾸준히 이어간 덕분에 계획한 목표는 대부분 달성했다.
+프로젝트 관련 회의를 하면서 서로의 관점을 공유하는 과정에서 생각하지 못했던 문제와 해결책이 동시에 보였다.
+오늘은 작은 요소 하나가 전체 시스템에 어떤 영향을 주는지 몸소 깨닫는 날이었다.
+작업 중 너무 많은 생각이 머릿속을 스쳐 지나가 집중하기 어려웠지만, 하나씩 정리해 나가자 흐름이 조금씩 잡히기 시작했다.
+오늘은 큰 문제는 없었지만 사소한 오류들이 계속 발견되어 그때그때 수정해야 했다.
+프로젝트 전체 구조를 다시 내려다보니 지나치게 복잡한 부분이 있어 이를 단순화할 방법을 고민해야 했다.
+오늘은 다양한 업무 요청이 한꺼번에 몰려 정신없었지만, 우선순위를 명확히 정해 효율적으로 처리할 수 있었다.
+기술적인 어려움뿐 아니라 팀 내 조율 문제까지 겹쳐 하루가 더 힘들게 느껴졌다.
+오늘은 작은 실험을 반복하는 과정에서 의외의 결과를 발견해 작업 방향을 일부 조정하게 되었다.
+문제를 깊게 파고들수록 기본 개념을 더 탄탄히 해야 한다는 사실을 다시 한번 깨달았다.
+오늘은 여러 가지 일을 병행하다 보니 시간 감각을 잃을 정도로 정신없이 지나갔다.
+프로젝트 중간 점검을 해보니 예상보다 진도가 느려 계획을 조정해야 했다.
+오늘은 갑작스러운 외부 이슈로 인해 중요한 업무를 뒤로 미뤄야 했다.
+작업이 예상대로 진행되지 않아 답답했지만 문제를 해결하는 과정에서 새로운 배움을 얻었다.
+오늘은 복잡한 계산을 여러 번 검증하느라 시간이 오래 걸렸지만 그 과정이 프로젝트 안정성에 큰 도움이 되었다.
+협업 과정에서 오해가 생겨 잠시 분위기가 어색해졌지만 솔직한 대화를 통해 금방 해결할 수 있었다.
+오늘은 처음 기대했던 것만큼 많은 일을 하지는 못했지만 중요한 문제 하나를 해결했다는 점에서 만족스러웠다.
+기술적인 해결책이 아무리 훌륭해도 문제의 본질을 잘못 이해하면 아무 소용 없다는 사실을 깨달았다.
+오늘은 예기치 못한 일정이 생겨 바쁜 하루였지만 돌이켜보면 의미 있는 시간이기도 했다.
+프로젝트 후반으로 갈수록 작은 변수 하나도 전체 일정에 큰 영향을 주므로 더욱 신중히 처리해야 한다.
+오늘은 집중력이 좋아 작업 효율이 높았지만 장시간 몰두한 탓에 피로가 쌓였다.
+문서를 검토하다 보니 누락된 항목이 있어 다시 처음부터 정리해야 했다.
+오늘은 기존 구조를 개편하는 작업을 진행했는데, 예상보다 손볼 곳이 많아 시간이 부족했다.
+팀원들의 의견을 조율하며 더 나은 방향으로 프로젝트를 발전시킬 수 있었다.
+오늘은 하루 종일 회의가 이어져 지쳤지만 그 과정에서 프로젝트의 핵심 문제를 명확히 파악할 수 있었다.
+작업 흐름을 유지하기 위해 중간중간 짧은 휴식을 취했지만 여전히 피로가 쉽게 가시지 않았다.
+오늘은 새로운 분석 도구를 사용해 보았는데, 익숙해지는 데 시간이 걸렸지만 결과는 만족스러웠다.
+복잡한 문제를 해결하려면 단순함 속에서도 본질을 찾아야 한다는 사실을 다시 깨달았다.
+오늘은 업무가 많아 정신없이 지나갔지만 작은 진전 하나가 큰 동기부여가 되었다.
+데이터 처리 과정에서 비효율적인 부분을 발견해 전체 흐름을 개선할 아이디어가 떠올랐다.
+오늘은 여러 예외 상황이 겹쳐 평소보다 많은 스트레스를 받았지만, 하루가 끝날 무렵에는 어느 정도 정리할 수 있었다.
+작업 중 단순한 실수 하나가 전체 구조에 영향을 미칠 뻔해 긴장했지만 다행히 빠르게 수정할 수 있었다.
+오늘은 새로운 기능 개발을 위해 여러 옵션을 실험해 보았고 그 과정에서 더 효율적인 방향을 찾았다.
+회의를 거듭하면서 프로젝트 목표가 더 명확해졌고 다음 단계로 넘어갈 준비가 되었다.
+오늘은 예상보다 시간이 오래 걸렸지만 결국 중요한 문제를 해결해 큰 성취감을 느꼈다.
+분석한 데이터를 다시 검토하니 처음 보지 못했던 패턴이 보이면서 작업 방향을 변경해야 했다.
+오늘은 기술적 문제뿐 아니라 의사소통에서도 어려움이 있었지만 차분히 정리해 해결할 수 있었다.
+작업 중간에 새로운 아이디어가 떠올라 기존 계획을 일부 수정하게 되었다.
+오늘은 여러 자료를 참고하여 복잡한 내용을 정리했는데, 시간이 오래 걸렸지만 그만큼 이해도가 높아졌다.
+프로젝트가 점점 복잡해지면서 세부 관리의 중요성이 커지고 있어 더욱 주의를 기울여야 한다.
+
+# SOURCE: hoshilm_kr/requirements.txt
+torch>=2.1
+pyyaml>=6.0
+sentencepiece>=0.1.99
+matplotlib>=3.7
+
+
+# SOURCE: lrs_v6_evidence_summary/V6_COUNTS_AND_LEAKAGE_CHECK.txt
+=== original current dataset ===
+train images: 120
+train masks : 120
+val images  : 10
+val masks   : 10
+=== v6 leakage check ===
+oldval_pothole in train should be 10: 10
+oldval_newval in train should be 0 : 0
+newval in train should be 0        : 0
+newval in val should be 10         : 10
+=== augmented dataset ===
+train images: 2400
+train masks : 2400
+val images  : 10
+val masks   : 10
+
+
+# SOURCE: lrs_v6_evidence_summary/V6_DATASET_MANIFEST.json
+{
+  "created_at": "20260509_214322",
+  "dataset_root": "datasets/pothole_binary/processed",
+  "backup": "datasets/_v6_backup_20260509_214322/pothole_binary_processed",
+  "before": {
+    "train_images": 110,
+    "train_masks": 110,
+    "val_images": 10,
+    "val_masks": 10
+  },
+  "old_val_added_to_train_with_prefix": "oldval_",
+  "old_val_added_pairs": [
+    [
+      "oldval_pothole_001.png",
+      "oldval_pothole_001.png"
+    ],
+    [
+      "oldval_pothole_002.png",
+      "oldval_pothole_002.png"
+    ],
+    [
+      "oldval_pothole_003.png",
+      "oldval_pothole_003.png"
+    ],
+    [
+      "oldval_pothole_004.png",
+      "oldval_pothole_004.png"
+    ],
+    [
+      "oldval_pothole_005.png",
+      "oldval_pothole_005.png"
+    ],
+    [
+      "oldval_pothole_006.png",
+      "oldval_pothole_006.png"
+    ],
+    [
+      "oldval_pothole_007.png",
+      "oldval_pothole_007.png"
+    ],
+    [
+      "oldval_pothole_008.png",
+      "oldval_pothole_008.png"
+    ],
+    [
+      "oldval_pothole_009.png",
+      "oldval_pothole_009.png"
+    ],
+    [
+      "oldval_pothole_010.png",
+      "oldval_pothole_010.png"
+    ]
+  ],
+  "new_val_zip": "/home/ubuntu/LRS_NEW_VAL_10_PAIRS_FIXED.zip",
+  "new_val_detected_root": "/tmp/tmp1mwgy4s0/new_val",
+  "new_val_pairs": [
+    [
+      "newval_001.png",
+      "newval_001.png"
+    ],
+    [
+      "newval_002.png",
+      "newval_002.png"
+    ],
+    [
+      "newval_003.png",
+      "newval_003.png"
+    ],
+    [
+      "newval_004.png",
+      "newval_004.png"
+    ],
+    [
+      "newval_005.png",
+      "newval_005.png"
+    ],
+    [
+      "newval_006.png",
+      "newval_006.png"
+    ],
+    [
+      "newval_007.png",
+      "newval_007.png"
+    ],
+    [
+      "newval_008.png",
+      "newval_008.png"
+    ],
+    [
+      "newval_009.png",
+      "newval_009.png"
+    ],
+    [
+      "newval_010.png",
+      "newval_010.png"
+    ]
+  ],
+  "expected_val_count": 10
+}
+
+# SOURCE: lrs_v6_evidence_summary/dataset_verify_aug_v6.txt
+train images=2400 masks=2400 missing_masks=0 missing_images=0 size_mismatch=0 empty_masks=0
+val images=10 masks=10 missing_masks=0 missing_images=0 size_mismatch=0 empty_masks=0
+[OK] all pairs valid
+
+
+# SOURCE: lrs_v6_evidence_summary/dataset_verify_original.txt
+train images=120 masks=120 missing_masks=0 missing_images=0 size_mismatch=0 empty_masks=0
+val images=10 masks=10 missing_masks=0 missing_images=0 size_mismatch=0 empty_masks=0
+[OK] all pairs valid
+
+
+# SOURCE: lrs_v6_evidence_summary/literace_v6_A_newval_balanced_s42/summary_best_last.json
+{
+  "csv": "final_evidence_v6_newval_with_visuals/literace_v6_A_newval_balanced_s42/train_log.csv",
+  "miou_key": "miou_binary",
+  "damage_key": "iou_damage",
+  "best_row_number": 3,
+  "best": {
+    "﻿epoch": "3",
+    "lr": "0.0004368614437687602",
+    "train_loss": "1.3924917131662369",
+    "val_loss": "0.8568061788876852",
+    "pixel_acc": "0.9157063802083333",
+    "miou_binary": "0.7987983434497284",
+    "iou_damage": "0.7028867287923498",
+    "iou_background": "0.8947099581071071",
+    "best": "1"
+  },
+  "last_row_number": 27,
+  "last": {
+    "﻿epoch": "27",
+    "lr": "0.00032958316858379226",
+    "train_loss": "1.2180814524491628",
+    "val_loss": "0.8302182157834371",
+    "pixel_acc": "0.9006281534830729",
+    "miou_binary": "0.769923918224904",
+    "iou_damage": "0.6634250629657832",
+    "iou_background": "0.8764227734840248",
+    "best": "0"
+  }
+}
+
+# SOURCE: lrs_v6_evidence_summary/literace_v6_A_newval_balanced_s42/train_log.csv
+﻿epoch,lr,train_loss,val_loss,pixel_acc,miou_binary,iou_damage,iou_background,best
+1,0.00044562640739709866,1.4842346189419429,0.959927519162496,0.8084701538085938,0.643754115120725,0.5324742562431869,0.7550339739982631,1
+2,0.00044124691370642,1.418406370083491,0.8034628431002299,0.9007517496744791,0.7774484766399808,0.6807945048167918,0.8741024484631699,1
+3,0.0004368614437687602,1.3924917131662369,0.8568061788876852,0.9157063802083333,0.7987983434497284,0.7028867287923498,0.8947099581071071,1
+4,0.00043246992059206845,1.372154040535291,0.8252255916595459,0.8949824015299479,0.7674581365200374,0.668082390633716,0.8668338824063587,0
+5,0.0004280722652849012,1.3501501031716665,0.8854042689005533,0.846490987141927,0.6951268660786704,0.5864872011629453,0.8037665309943954,0
+6,0.0004236683969866478,1.3222747465968132,0.8129054109255472,0.9009384155273438,0.7744560745029079,0.673400566123796,0.8755115828820197,0
+7,0.0004192582327943313,1.3148487415909766,0.8715365727742513,0.8797500610351563,0.7387473392704285,0.6284470497638711,0.8490476287769858,0
+8,0.00041484168768577193,1.2922218848268192,0.8175475200017294,0.8956029256184895,0.7638793359527302,0.6584626802092624,0.869295991696198,0
+9,0.0004104186744388884,1.2903199500838916,1.1402741471926372,0.7296162923177083,0.5460520856544024,0.43275794182203875,0.6593462294867662,0
+10,0.00040598910354688883,1.2777913976709048,0.9400948882102966,0.8177271525065104,0.6533302011608071,0.5380622391341897,0.7685981631874245,0
+11,0.0004015528831290922,1.2816197512547176,1.066285212834676,0.8743479410807292,0.6988334838589627,0.5456498309810456,0.8520171367368797,0
+12,0.00039710991883709347,1.2672637700041136,0.8406197627385458,0.8830276489257812,0.7460674032111347,0.6397812156876873,0.8523535907345823,0
+13,0.0003926601137559683,1.2600511752565702,0.8559422492980957,0.8841283162434895,0.7453979223723964,0.6360971651382449,0.854698679606548,0
+14,0.0003882033683001873,1.242947026292483,0.8553777734438578,0.8800425211588542,0.7399750570454617,0.6308376691272689,0.8491124449636546,0
+15,0.0003837395801038814,1.257362539966901,0.7773062586784363,0.9110850016276042,0.7908595963254998,0.6929559405984069,0.8887632520525927,0
+16,0.0003792686439050745,1.2460826765497526,0.8044861555099487,0.901873779296875,0.7750326931969413,0.6730273494104547,0.877038036983428,0
+17,0.0003747904514234638,1.2496425779660543,0.8487133979797363,0.900872802734375,0.7679723580900977,0.6584964113491084,0.8774483048310868,0
+18,0.00037030489123129613,1.2418016283710798,0.8858141700426737,0.8394877115885416,0.6798980746788228,0.5619250422347125,0.7978711071229331,0
+19,0.0003658118486168481,1.240157852669557,0.8646985292434692,0.900537618001302,0.764894115948435,0.6520345774968682,0.877753654400002,0
+20,0.0003613112054399758,1.2312397172053655,0.8542174498240153,0.892511494954427,0.7556236186957526,0.644793193400476,0.8664540439910291,0
+21,0.0003568028399791547,1.2376398159066837,0.9404644966125488,0.8352330525716146,0.6735072380542471,0.5542313244191983,0.7927831516892959,0
+22,0.00035228662676937647,1.2264122956991195,0.8679981430371603,0.8982666015625,0.7627968727406962,0.6511772697387352,0.8744164757426572,0
+23,0.00034776243643021385,1.223186968366305,0.9202134013175964,0.87137451171875,0.7215664877085932,0.6029872350179049,0.8401457403992817,0
+24,0.00034323013548330153,1.2210512974858283,0.8675238490104675,0.8753875732421875,0.7297683452971184,0.6151418567279251,0.8443948338663119,0
+25,0.000338689586158411,1.2178697034716606,0.9168904622395834,0.8251922607421875,0.6590741996403302,0.5375299568191207,0.7806184424615397,0
+26,0.0003341406461872205,1.2218591156601906,0.8143368164698283,0.9009073893229167,0.7718154597272968,0.6673041981447834,0.8763267213098104,0
+27,0.00032958316858379226,1.2180814524491628,0.8302182157834371,0.9006281534830729,0.769923918224904,0.6634250629657832,0.8764227734840248,0
+
+
+# SOURCE: lrs_v6_evidence_summary/pothole_binary_literace_v6_A_newval_balanced.yaml
+seed: 42
+device: cuda
+num_workers: 4
+
+data:
+  root: datasets/pothole_binary_aug_v6/processed
+  class_names:
+    - background
+    - pothole
+  ignore_index: 255
+  mask_positive_threshold: 0
+  mask_ignore_values: []
+  allow_fuzzy_filename_match: true
+  fuzzy_match_threshold: 0.82
+
+save_dir: seg/runs/literace_v6_A_newval_balanced_s42
+
+model:
+  name: lite_race
+  num_classes: 2
+  use_aux: true
+  base_channels: 24
+  context_channels: 96
+  use_detail_branch: true
+  context_module: lite_aspp
+  liteaspp_rates: [1, 2, 4]
+  use_boundary_gate: true
+  fuse_boundary_logit: true
+
+train:
+  image_size: [384, 512]
+  batch_size: 4
+  epochs: 90
+  amp: true
+  base_lr: 0.00045
+  weight_decay: 0.00008
+  grad_clip: 1.0
+  print_freq: 1
+  early_stopping_patience: 24
+  boundary_width: 3
+  class_weights: [0.28, 0.72]
+  loss:
+    ce_weight: 1.0
+    dice_weight: 0.85
+    aux_weight: 0.2
+    boundary_weight: 0.10
+
+val:
+  batch_size: 4
+
+optimizer:
+  name: adamw
+
+scheduler:
+  name: poly
+  power: 0.88
+  min_lr: 0.000003
+
+infer:
+  overlay_alpha: 0.45
+  palette:
+    - [30, 30, 30]
+    - [255, 90, 0]
+
+
+# SOURCE: lrs_v6_evidence_summary/pothole_binary_literace_v6_B_newval_recall.yaml
+seed: 42
+device: cuda
+num_workers: 4
+
+data:
+  root: datasets/pothole_binary_aug_v6/processed
+  class_names:
+    - background
+    - pothole
+  ignore_index: 255
+  mask_positive_threshold: 0
+  mask_ignore_values: []
+  allow_fuzzy_filename_match: true
+  fuzzy_match_threshold: 0.82
+
+save_dir: seg/runs/literace_v6_B_newval_recall_s42
+
+model:
+  name: lite_race
+  num_classes: 2
+  use_aux: true
+  base_channels: 24
+  context_channels: 96
+  use_detail_branch: true
+  context_module: lite_aspp
+  liteaspp_rates: [1, 2, 4]
+  use_boundary_gate: true
+  fuse_boundary_logit: true
+
+train:
+  image_size: [384, 512]
+  batch_size: 4
+  epochs: 90
+  amp: true
+  base_lr: 0.00042
+  weight_decay: 0.00008
+  grad_clip: 1.0
+  print_freq: 1
+  early_stopping_patience: 24
+  boundary_width: 3
+  class_weights: [0.22, 0.78]
+  loss:
+    ce_weight: 1.0
+    dice_weight: 1.0
+    aux_weight: 0.2
+    boundary_weight: 0.12
+
+val:
+  batch_size: 4
+
+optimizer:
+  name: adamw
+
+scheduler:
+  name: poly
+  power: 0.88
+  min_lr: 0.000003
+
+infer:
+  overlay_alpha: 0.45
+  palette:
+    - [30, 30, 30]
+    - [255, 90, 0]
+
+
+# SOURCE: lrs_v6_evidence_summary/pothole_binary_literace_v6_C_newval_precision.yaml
+seed: 42
+device: cuda
+num_workers: 4
+
+data:
+  root: datasets/pothole_binary_aug_v6/processed
+  class_names:
+    - background
+    - pothole
+  ignore_index: 255
+  mask_positive_threshold: 0
+  mask_ignore_values: []
+  allow_fuzzy_filename_match: true
+  fuzzy_match_threshold: 0.82
+
+save_dir: seg/runs/literace_v6_C_newval_precision_s42
+
+model:
+  name: lite_race
+  num_classes: 2
+  use_aux: true
+  base_channels: 24
+  context_channels: 96
+  use_detail_branch: true
+  context_module: lite_aspp
+  liteaspp_rates: [1, 2, 4]
+  use_boundary_gate: true
+  fuse_boundary_logit: true
+
+train:
+  image_size: [384, 512]
+  batch_size: 4
+  epochs: 80
+  amp: true
+  base_lr: 0.00038
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  print_freq: 1
+  early_stopping_patience: 22
+  boundary_width: 3
+  class_weights: [0.36, 0.64]
+  loss:
+    ce_weight: 1.0
+    dice_weight: 0.72
+    aux_weight: 0.2
+    boundary_weight: 0.08
+
+val:
+  batch_size: 4
+
+optimizer:
+  name: adamw
+
+scheduler:
+  name: poly
+  power: 0.88
+  min_lr: 0.000003
+
+infer:
+  overlay_alpha: 0.45
+  palette:
+    - [30, 30, 30]
+    - [255, 90, 0]
+
+
+# SOURCE: lrs_v6_evidence_summary/pothole_binary_literace_v6_D_safe_oom.yaml
+seed: 42
+device: cuda
+num_workers: 4
+
+data:
+  root: datasets/pothole_binary_aug_v6/processed
+  class_names:
+    - background
+    - pothole
+  ignore_index: 255
+  mask_positive_threshold: 0
+  mask_ignore_values: []
+  allow_fuzzy_filename_match: true
+  fuzzy_match_threshold: 0.82
+
+save_dir: seg/runs/literace_v6_D_safe_oom_s42
+
+model:
+  name: lite_race
+  num_classes: 2
+  use_aux: true
+  base_channels: 24
+  context_channels: 96
+  use_detail_branch: true
+  context_module: lite_aspp
+  liteaspp_rates: [1, 2, 4]
+  use_boundary_gate: true
+  fuse_boundary_logit: true
+
+train:
+  image_size: [320, 448]
+  batch_size: 2
+  epochs: 80
+  amp: true
+  base_lr: 0.00035
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  print_freq: 1
+  early_stopping_patience: 22
+  boundary_width: 3
+  class_weights: [0.28, 0.72]
+  loss:
+    ce_weight: 1.0
+    dice_weight: 0.85
+    aux_weight: 0.2
+    boundary_weight: 0.10
+
+val:
+  batch_size: 4
+
+optimizer:
+  name: adamw
+
+scheduler:
+  name: poly
+  power: 0.88
+  min_lr: 0.000003
+
+infer:
+  overlay_alpha: 0.45
+  palette:
+    - [30, 30, 30]
+    - [255, 90, 0]

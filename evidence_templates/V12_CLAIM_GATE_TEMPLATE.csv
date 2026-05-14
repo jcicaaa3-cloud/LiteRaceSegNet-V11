@@ -1,0 +1,5 @@
+claim_id,claim_text,required_evidence,status,allowed_wording,blocked_wording
+C1,LiteRaceSegNet improves boundary preservation,boundary metrics + ablation,no evidence yet,may improve / suggests potential,proves / guarantees / SOTA
+C2,LiteRaceSegNet is deployable on CPU,CPU latency + model size,no evidence yet,field-deployment candidate,real-time in all environments
+C3,LiteRaceSegNet is better than SegFormer,baseline comparison,no evidence yet,trade-off under same condition,universally superior
+C4,Stress robustness is improved,stress evaluation,no evidence yet,more stable under tested stress condition,robust to all weather/camera conditions

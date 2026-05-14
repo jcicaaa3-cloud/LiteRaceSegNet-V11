@@ -1,0 +1,9 @@
+# threshold sweep도 기존 0.45~0.75만 보면 recall 개선 여지를 놓칠 수 있음.
+# repo의 threshold_sweep_literace.py 인자가 다를 수 있으니 --help 먼저 확인.
+
+python seg/tools/threshold_sweep_literace.py --help
+
+# 가능한 경우 threshold 범위를 0.25~0.80으로 넓혀서 다시 실행:
+python seg/tools/threshold_sweep_literace.py   --config seg/config/pothole_binary_literace_v4_A_highres_damage_boost.yaml   --checkpoint seg/runs/literace_v4_A_highres_damage_boost_s42/best.pth   --thresholds 0.25,0.30,0.35,0.40,0.45,0.50,0.55,0.60,0.65,0.70,0.75,0.80   --min-areas 0,60,120,180,240,360   --out final_evidence/07_v4_tuning_summary/v4_A_threshold_sweep.csv
+
+# 인자명이 다르면 위 명령에서 --checkpoint/--out/--thresholds 부분만 --help 결과에 맞춰 수정.

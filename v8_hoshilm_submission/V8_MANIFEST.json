@@ -1,0 +1,35 @@
+{
+  "package": "LiteRaceSegNet_v8_combined_package",
+  "created_from": [
+    "LRS_V6_NEWVAL_EVIDENCE_WITH_VISUALS_literace_v6_A_newval_balanced_s42(4).zip",
+    "LiteRaceSegNet_v7_WWDC_style_deck.pptx",
+    "uploaded HoshiLM prototype files: mini_gpt.py, make_spm.py, sp.model, sp.vocab, data.txt"
+  ],
+  "v8_additions": [
+    "hoshilm_kr/model.py",
+    "hoshilm_kr/train_hoshilm.py",
+    "hoshilm_kr/generate.py",
+    "hoshilm_kr/configs",
+    "web_demo/index.html",
+    "docs/MODEL_CARD_HOSHILM_KR.md"
+  ],
+  "lrs_metrics": {
+    "estimated_trainable_params": 124509,
+    "params_m": 0.124509,
+    "best_val_miou_binary": 0.7987983434497284,
+    "best_val_iou_damage": 0.7028867287923498,
+    "augmented_train_pairs": 2400,
+    "new_val_pairs": 10,
+    "newval_leakage_into_train": 0
+  },
+  "package_name": "LiteRaceSegNet_v8_HoshiLM_combined_package",
+  "language_module_name": "HoshiLM-KR",
+  "branding_policy": "No public-facing third-party chatbot branding. HoshiLM-KR is an original toy-scale decoder-only Transformer LM module.",
+  "hoshilm_configs": {
+    "S": "~5M params with vocab≈8k",
+    "M": "~14M params with vocab≈8k",
+    "L": "~30M params with vocab≈8k",
+    "XL_experimental": "~95M params with vocab≈12k, needs much larger corpus"
+  },
+  "submission_clean_note": "Optional chat layer removed in v9 submission-clean package; HoshiLM-KR training module remains."
+}

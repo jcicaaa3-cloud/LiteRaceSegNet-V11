@@ -1,0 +1,29 @@
+seed: 42
+device: auto
+dtype: bfloat16
+tokenizer: char
+vocab_size_override: 605
+data_path: data/data_project_qa.txt
+out_dir: runs/hoshilm_project_qa
+train_ratio: 0.92
+block_size: 384
+n_layer: 6
+n_head: 6
+n_embd: 384
+dropout: 0.08
+bias: true
+tie_weights: true
+batch_size: 12
+gradient_accumulation_steps: 4
+learning_rate: 0.00035
+weight_decay: 0.08
+grad_clip: 1.0
+max_iters: 6000
+eval_interval: 250
+eval_iters: 30
+save_interval: 500
+sample_prompt: "질문: 데이터는 몇 장인가?
+답변:"
+sample_tokens: 220
+temperature: 0.7
+top_k: 40

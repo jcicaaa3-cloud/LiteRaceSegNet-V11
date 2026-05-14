@@ -1,0 +1,2 @@
+image_key,model,pred_file,gt_file,match_mode,iou_damage,dice_damage,precision,recall,boundary_precision,boundary_recall,boundary_f1,boundary_iou,pred_area_ratio,gt_area_ratio,pred_components,gt_components,primary_failure_type,note
+TBD,LiteRaceSegNet,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,manual_required,TBD

@@ -1,0 +1,39 @@
+seed: 42
+device: cuda
+num_workers: 4
+save_dir: seg/runs/literace_v4_A_aug_safe_damage_boost_s42
+data:
+  root: datasets/pothole_binary_aug/processed
+  class_names: [background, pothole]
+  ignore_index: 255
+  mask_positive_threshold: 0
+  mask_ignore_values: []
+model:
+  name: LiteRaceSegNet
+  num_classes: 2
+  pretrained: true
+train:
+  epochs: 100
+  batch_size: 2
+  image_size: [320, 448]
+  early_stopping_patience: 999
+  amp: true
+  grad_clip_norm: 1.0
+loss:
+  ce_weight: 0.45
+  dice_weight: 0.45
+  boundary_weight: 0.10
+  class_weights: [0.35, 2.80]
+optimizer:
+  name: adamw
+  lr: 0.00034
+  weight_decay: 0.00010
+scheduler:
+  name: poly
+  power: 0.85
+  min_lr: 0.000003
+infer:
+  overlay_alpha: 0.45
+  palette:
+    - [30, 30, 30]
+    - [255, 90, 0]

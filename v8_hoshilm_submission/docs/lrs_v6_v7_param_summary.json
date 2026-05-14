@@ -1,0 +1,8 @@
+{
+  "checkpoint": "best.pth",
+  "state_dict_total_tensors": 218,
+  "state_dict_total_elements": 129120,
+  "estimated_trainable_parameters_excluding_bn_buffers": 124509,
+  "estimated_params_m": 0.124509,
+  "fp32_param_size_mib": 0.4749641418457031
+}

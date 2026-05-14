@@ -1,0 +1,28 @@
+seed: 42
+device: auto
+dtype: bfloat16
+tokenizer: char
+data_path: data/data_project_qa.txt
+out_dir: runs/hoshilm_project_qa_smoke
+train_ratio: 0.92
+block_size: 192
+n_layer: 2
+n_head: 2
+n_embd: 128
+dropout: 0.05
+bias: true
+tie_weights: true
+batch_size: 8
+gradient_accumulation_steps: 2
+learning_rate: 0.0005
+weight_decay: 0.05
+grad_clip: 1.0
+max_iters: 80
+eval_interval: 20
+eval_iters: 5
+save_interval: 40
+sample_prompt: "질문: mIoU는 어느 정도인가?
+답변:"
+sample_tokens: 160
+temperature: 0.7
+top_k: 40

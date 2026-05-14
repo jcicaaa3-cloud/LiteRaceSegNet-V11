@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LiteRaceSegNet · Static Segmentation Preview</title>
+<style>
+:root{--bg:#0b1020;--card:#111827;--line:#263246;--text:#f8fafc;--muted:#cbd5e1;--blue:#60a5fa;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 20% -10%,#1e3a8a 0,#0b1020 34%,#050816 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;line-height:1.55}.wrap{max-width:1180px;margin:0 auto;padding:56px 22px 80px}.hero{padding:42px 0 36px}.badge{display:inline-flex;padding:8px 12px;border:1px solid #2563eb;border-radius:999px;background:rgba(37,99,235,.18);color:#bfdbfe;font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase}h1{font-size:clamp(44px,7vw,88px);line-height:.98;letter-spacing:-.055em;margin:18px 0 14px}.lead{font-size:clamp(18px,2vw,26px);max-width:920px;color:#dbeafe;margin:0}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.card{grid-column:span 4;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.045));border:1px solid var(--line);border-radius:26px;padding:24px;box-shadow:0 18px 60px rgba(0,0,0,.28)}.card.wide{grid-column:span 6}.card.full{grid-column:span 12}.metric{font-size:46px;font-weight:900;letter-spacing:-.04em}.sub{color:var(--muted);font-size:15px}.img{width:100%;border-radius:18px;border:1px solid #334155;background:#fff}.section-title{font-size:34px;margin:44px 0 16px;letter-spacing:-.035em}.pill{display:inline-block;margin:4px 4px 0 0;padding:7px 10px;border:1px solid #334155;border-radius:999px;background:#0f172a;color:#dbeafe;font-size:13px}.note{border-left:3px solid var(--green);padding-left:14px;color:#dbeafe}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#e0f2fe}@media(max-width:900px){.card,.card.wide{grid-column:span 12}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="hero">
+  <div class="badge">Static GitHub Pages preview</div>
+  <h1>LiteRaceSegNet<br/>Road Damage Segmentation</h1>
+  <p class="lead">Boundary-aware lightweight CNN preview for pothole/crack-style damage masks. This page is static: it shows model structure, visual evidence, and result status without requiring private datasets or checkpoints.</p>
+</section>
+<section class="grid">
+  <div class="card"><div class="metric">0.1245M</div><div class="sub">reference trainable parameters</div></div>
+  <div class="card"><div class="metric">0.7988</div><div class="sub">preliminary binary mIoU reference</div></div>
+  <div class="card"><div class="metric">TBD-safe</div><div class="sub">baseline, latency, Boundary IoU, robustness values are not fabricated</div></div>
+  <div class="card full"><h2>Clean architecture</h2><img class="img" src="assets/architecture_clean.png" alt="LiteRaceSegNet architecture"></div>
+  <div class="card wide"><h2>Validation metric preview</h2><img class="img" src="assets/lrs_val_metrics.png" alt="validation metrics"></div>
+  <div class="card wide"><h2>Qualitative service card</h2><img class="img" src="assets/newval_001_service_card.png" alt="service card"></div>
+  <div class="card full"><h2>Dual-device evidence protocol</h2><img class="img" src="assets/evaluation_protocol.png" alt="evaluation protocol"></div>
+  <div class="card full"><h2>Service-card sheet</h2><img class="img" src="assets/v6_service_cards_sheet.jpg" alt="service cards sheet"></div>
+</section>
+<h2 class="section-title">Release boundary</h2>
+<p class="note">This public page does not include manuscript files, private road images, masks, checkpoints, pretrained weights, or credentials. It is a GitHub-facing project preview for code, diagrams, demos, and reproducible evidence templates.</p>
+<p><span class="pill">custom LiteIR backbone</span><span class="pill">detail/context split</span><span class="pill">boundary-guided fusion</span><span class="pill">CPU/GPU evidence</span><span class="pill">no fabricated metrics</span></p>
+</main>
+</body>
+</html>

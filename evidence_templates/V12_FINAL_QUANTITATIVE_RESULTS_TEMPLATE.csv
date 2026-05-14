@@ -1,0 +1,11 @@
+model_or_variant,status,pixel_acc,miou_binary,damage_iou,dice,boundary_f1,boundary_iou,params_million,fp32_mib,source_file,note
+LiteRaceSegNet V12 Full,TBD,TBD,TBD,TBD,TBD,TBD,TBD,0.124509,0.474964,final_evidence/06_report_ready/final_comparison_table.md,official final run required
+w/o Detail branch,TBD,TBD,TBD,TBD,TBD,TBD,TBD,0.124509,0.474964,seg/runs/v11_ablation/,ablation
+w/o LiteASPP context,TBD,TBD,TBD,TBD,TBD,TBD,TBD,0.123477,0.471027,seg/runs/v11_ablation/,ablation
+w/o Boundary gate,TBD,TBD,TBD,TBD,TBD,TBD,TBD,0.124509,0.474964,seg/runs/v11_ablation/,ablation
+w/o Boundary-logit fusion,TBD,TBD,TBD,TBD,TBD,TBD,TBD,0.124509,0.474964,seg/runs/v11_ablation/,ablation
+w/o Aux loss,TBD,TBD,TBD,TBD,TBD,TBD,TBD,0.124411,0.474590,seg/runs/v11_ablation/,ablation
+Slim capacity,TBD,TBD,TBD,TBD,TBD,TBD,TBD,0.059397,0.226582,seg/runs/v11_ablation/,capacity trade-off
+DeepLabV3-MobileNetV3,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,final_evidence/06_report_ready/final_comparison_table.md,baseline
+LRASPP-MobileNetV3,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,final_evidence/06_report_ready/final_comparison_table.md,baseline
+SegFormer baseline,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,final_evidence/06_report_ready/final_comparison_table.md,Transformer baseline

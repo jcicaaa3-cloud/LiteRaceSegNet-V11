@@ -1,0 +1,5 @@
+image_key,input_image,gt_mask,pred_mask,overlay_image,primary_failure_type,secondary_failure_type,manual_confirmed,short_evidence_note,report_use
+example_001,path/to/input.png,path/to/gt.png,path/to/pred.png,path/to/overlay.png,shadow_confusion,,no,"Prediction overlaps dark shadow-like region rather than annotated damage.",candidate
+example_002,path/to/input.png,path/to/gt.png,path/to/pred.png,path/to/overlay.png,road_texture_confusion,,no,"Prediction follows rough asphalt texture or lane-like noise.",candidate
+example_003,path/to/input.png,path/to/gt.png,path/to/pred.png,path/to/overlay.png,missed_small_damage,,no,"Small annotated damage region is partially or fully missed.",candidate
+example_004,path/to/input.png,path/to/gt.png,path/to/pred.png,path/to/overlay.png,over_prediction,fragmented_prediction,no,"Prediction covers a wider region than GT or splits into many fragments.",candidate

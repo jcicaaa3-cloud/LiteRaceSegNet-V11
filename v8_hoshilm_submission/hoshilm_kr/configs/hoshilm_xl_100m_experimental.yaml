@@ -1,0 +1,32 @@
+# Experimental near-100M config. Do NOT use with only the current 57KB dummy corpus.
+# Needs much larger text data. Otherwise it will memorize and overfit.
+# Expected scale with vocab≈12k: ~94.7M params.
+seed: 42
+device: auto
+data_path: data/data.txt
+out_dir: runs/hoshilm_xl_100m
+tokenizer: sentencepiece
+sp_model_path: tokenizer/sp.model
+expected_vocab_size: 12000
+block_size: 512
+n_layer: 12
+n_head: 12
+n_embd: 768
+dropout: 0.15
+bias: true
+tie_weights: true
+batch_size: 2
+gradient_accumulation_steps: 32
+learning_rate: 0.00015
+weight_decay: 0.10
+grad_clip: 1.0
+max_iters: 30000
+eval_interval: 500
+save_interval: 2000
+eval_iters: 20
+train_ratio: 0.90
+dtype: bfloat16
+sample_prompt: "이 프로젝트는"
+sample_tokens: 200
+temperature: 0.85
+top_k: 50

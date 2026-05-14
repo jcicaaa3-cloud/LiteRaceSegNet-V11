@@ -1,0 +1,15 @@
+experiment: segformer_e3_v6_baseline
+baseline: SegFormer-E3
+model_name: nvidia/mit-b0
+data_root: datasets/pothole_binary_v6_aug/processed
+fallback_data_root: datasets/pothole_binary_aug/processed
+image_size: [384, 512]
+epochs: 60
+batch_size: 2
+lr: 0.00006
+weight_decay: 0.01
+patience: 12
+seed: 42
+outputs:
+  run_dir: seg/runs/segformer_e3_v6_baseline
+  evidence_zip: LRS_SEGFORMER_E3_V6_EVIDENCE.zip

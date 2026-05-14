@@ -1,0 +1,30 @@
+# Safe starter config for the uploaded dummy Korean corpus.
+# Expected scale with vocab≈8k: ~5.3M params. With char tokenizer: smaller, but fast.
+seed: 42
+device: auto
+data_path: data/data.txt
+out_dir: runs/hoshilm_s
+tokenizer: char
+expected_vocab_size: 8000
+block_size: 128
+n_layer: 4
+n_head: 4
+n_embd: 256
+dropout: 0.10
+bias: true
+tie_weights: true
+batch_size: 32
+gradient_accumulation_steps: 2
+learning_rate: 0.0003
+weight_decay: 0.10
+grad_clip: 1.0
+max_iters: 3000
+eval_interval: 200
+save_interval: 500
+eval_iters: 20
+train_ratio: 0.90
+dtype: bfloat16
+sample_prompt: "프로젝트는"
+sample_tokens: 120
+temperature: 0.8
+top_k: 40
